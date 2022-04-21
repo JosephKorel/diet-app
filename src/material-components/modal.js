@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import { Button, TextField } from "@mui/material";
+import { Alert, Button, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useAuth } from "../provider/auth";
@@ -21,10 +21,7 @@ const BasicModal = ({
   const handleClose = () => setOpen(false);
   const { carb, protein, fat, data } = useAuth();
   const [show, setShow] = useState(false);
-
-  /*  const food = data.map((item) => item);
-  const result = food.filter((item) => item.description.includes(newFood)); */
-  console.log(entries);
+  const [alert, setAlert] = useState(false);
 
   const style = {
     position: "absolute",
@@ -38,11 +35,32 @@ const BasicModal = ({
     p: 4,
   };
 
+  const other = { display: "flex", flexDirection: "column" };
+
+  const alertStyle = {
+    position: "absolute",
+    top: "210%",
+  };
+
   const suggestions = (e) => {
     setNewFood(e.target.innerText);
     setFoodInput(e.target.innerText);
     setHide(true);
     setShow(true);
+  };
+
+  function closeAlert() {
+    setAlert(false);
+  }
+
+  const addFood = (e) => {
+    e.preventDefault();
+    addItem(newFood);
+    setNewFood("");
+    setShow(false);
+    setQnty(0);
+    setAlert(true);
+    setTimeout(closeAlert, 2000);
   };
 
   return (
@@ -60,7 +78,16 @@ const BasicModal = ({
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Adicionar Alimento
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          <Typography
+            id="modal-modal-description"
+            sx={{
+              mt: 2,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <TextField
               id="foodName"
               label="Alimento"
@@ -77,10 +104,10 @@ const BasicModal = ({
             <div>
               <div
                 className={
-                  newFood.length >= 4 && hide === false ? "sugg" : "hide"
+                  newFood.length >= 3 && hide === false ? "sugg" : "hide"
                 }
               >
-                {newFood.length >= 4 && hide === false ? (
+                {newFood.length >= 3 && hide === false ? (
                   entries.map((item) =>
                     item.map((obj) => <p onClick={suggestions}>{obj}</p>)
                   )
@@ -97,15 +124,7 @@ const BasicModal = ({
               value={qnty}
               onChange={(e) => setQnty(e.target.value)}
             />
-            <Button
-              variant="contained"
-              onClick={(e) => {
-                e.preventDefault();
-                addItem(newFood);
-                setNewFood("");
-                setShow(false);
-              }}
-            >
+            <Button variant="contained" onClick={addFood}>
               Adicionar
             </Button>
             {show === true ? (
@@ -117,6 +136,13 @@ const BasicModal = ({
                   <li>Proteínas: {protein}g</li>
                   <li>Gorduras: {fat}g</li>
                 </ul>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {alert === true ? (
+              <div style={alertStyle}>
+                <Alert severity="success">Alimento adicionado!</Alert>
               </div>
             ) : (
               <div></div>

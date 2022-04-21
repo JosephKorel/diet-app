@@ -6,8 +6,9 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BasicModal from "../material-components/modal";
+import { Button } from "@mui/material";
 
-const Section = ({ section, addItem, setFoodInput, entries }) => {
+const Section = ({ section, addItem, setFoodInput, entries, removeItem }) => {
   const [newFood, setNewFood] = useState("");
   const [hide, setHide] = useState(false);
   const { qnty, setQnty } = useAuth();
@@ -38,22 +39,29 @@ const Section = ({ section, addItem, setFoodInput, entries }) => {
         <AccordionDetails>
           <Typography>
             <div>
-              {section.food.map((item, index) => (
+              {section.food.map((item, i) => (
                 <>
                   <h2>{item}</h2>
-                  <h3>Quantidade: {section.quantity[index]}g</h3>
+                  <h3>Quantidade: {section.quantity[i]}g</h3>
                   <ul>
                     <li key={Math.random()}>
-                      Carboidratos: {section.carb[index]}g
+                      Carboidratos: {section.carb[i]}g
                     </li>
                     <li key={Math.random()}>
-                      Proteínas: {section.protein[index]}g
+                      Proteínas: {section.protein[i]}g
                     </li>
-                    <li key={Math.random()}>Gorduras: {section.fat[index]}g</li>
+                    <li key={Math.random()}>Gorduras: {section.fat[i]}g</li>
                     <li key={Math.random()}>
-                      Calorias: {section.calories[index]}kcal
+                      Calorias: {section.calories[i]}kcal
                     </li>
                   </ul>
+                  <Button
+                    variant="contained"
+                    onClick={() => removeItem(i)}
+                    id={i}
+                  >
+                    Remover
+                  </Button>
                 </>
               ))}
             </div>

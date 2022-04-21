@@ -10,6 +10,18 @@ export const AuthProvider = (props) => {
   const [qnty, setQnty] = useState(0);
   const [calories, setCalories] = useState(0);
   const [data, setData] = useState([]);
+  const [sections, setSections] = useState([
+    {
+      id: Math.random(),
+      title: "First Meal",
+      food: [],
+      quantity: [],
+      carb: [],
+      protein: [],
+      fat: [],
+      calories: [],
+    },
+  ]);
   return (
     <AuthContext.Provider
       value={{
@@ -27,6 +39,8 @@ export const AuthProvider = (props) => {
         setQnty,
         data,
         setData,
+        sections,
+        setSections,
       }}
     >
       {props.children}

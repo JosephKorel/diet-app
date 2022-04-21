@@ -11,6 +11,7 @@ const FoodInput = ({ entries, sectionTitle, setSectionTitle, setSections }) => {
     setSections((s) => [
       ...s,
       {
+        id: Math.random(),
         title: title,
         food: [],
         quantity: [],

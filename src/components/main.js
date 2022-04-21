@@ -3,10 +3,7 @@ import foodData from "../foodList.json";
 import FoodInput from "./input";
 import Section from "./sections";
 import { useAuth } from "../provider/auth";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
+import axios from "axios";
 
 function Main() {
   const [acc, setAcc] = useState([]);
@@ -17,6 +14,7 @@ function Main() {
   const [entries, setEntries] = useState([]);
   const [foodInput, setFoodInput] = useState("");
   const [id, setId] = useState(0);
+  const [itemData, setItemData] = useState([]);
 
   const {
     qnty,
@@ -24,6 +22,8 @@ function Main() {
     protein,
     fat,
     data,
+    sections,
+    setSections,
     setCarb,
     setProtein,
     setFat,
@@ -31,17 +31,24 @@ function Main() {
     setData,
   } = useAuth();
 
-  const [sections, setSections] = useState([
-    {
-      title: "First Meal",
-      food: [],
-      quantity: [],
-      carb: [],
-      protein: [],
-      fat: [],
-      calories: [],
-    },
-  ]);
+  const getData = () => {
+    fetch("foodList.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((myJson) => setItemData([myJson]));
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(itemData);
 
   useEffect(() => {
     const foodObj = foodData.filter((item) =>
@@ -73,7 +80,6 @@ function Main() {
 
       setCalories(carbKcal + protKcal + fatKcal);
     }
-    console.log(data);
   }, [foodInput]);
 
   const addItem = (index, item) => {
@@ -100,6 +106,28 @@ function Main() {
     setSections(newSections);
   };
 
+  const removeItem = (index, i) => {
+    const newSections = sections.slice();
+    const newFood = newSections[index].food;
+    const newQnty = newSections[index].quantity;
+    const newCarb = newSections[index].carb;
+    const newProt = newSections[index].protein;
+    const newFat = newSections[index].fat;
+
+    newFood.splice(i, 1);
+    newQnty.splice(i, 1);
+    newCarb.splice(i, 1);
+    newProt.splice(i, 1);
+    newFat.splice(i, 1);
+    newSections[index].food = newFood;
+    newSections[index].quantity = newQnty;
+    newSections[index].carb = newCarb;
+    newSections[index].protein = newProt;
+    newSections[index].fat = newFat;
+
+    setSections(newSections);
+  };
+
   return (
     <div>
       <FoodInput
@@ -119,12 +147,14 @@ function Main() {
             sections={sections}
             input={input}
             id={id}
+            index={index}
             setInput={setInput}
             setFoodInput={setFoodInput}
             entries={entries}
             section={section}
             key={section.id}
             addItem={(item) => addItem(index, item)}
+            removeItem={(i) => removeItem(index, i)}
           />
         ))
       ) : (
