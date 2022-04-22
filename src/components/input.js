@@ -1,9 +1,12 @@
 import { Button, TextField } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import moment from "moment";
+import "antd/dist/antd.css";
+import { TimePicker } from "antd";
 import { useAuth } from "../provider/auth";
 
-const FoodInput = ({ entries, sectionTitle, setSectionTitle, setSections }) => {
-  const { input, setInput } = useAuth();
+const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
+  const { time, setTime } = useAuth();
 
   const addSection = (title) => {
     if (title === "") return;
@@ -13,6 +16,7 @@ const FoodInput = ({ entries, sectionTitle, setSectionTitle, setSections }) => {
       {
         id: Math.random(),
         title: title,
+        time: time,
         food: [],
         quantity: [],
         carb: [],
@@ -24,6 +28,8 @@ const FoodInput = ({ entries, sectionTitle, setSectionTitle, setSections }) => {
     setSectionTitle("");
   };
 
+  const format = "HH:mm";
+
   return (
     <div>
       <form>
@@ -34,19 +40,18 @@ const FoodInput = ({ entries, sectionTitle, setSectionTitle, setSections }) => {
           value={sectionTitle}
           onChange={(e) => setSectionTitle(e.target.value)}
         />
-        <TextField
-          id="time"
-          label="Horário"
-          variant="standard"
-          value={input}
-          type="text"
-          onChange={(e) => setInput(e.target.value)}
+        <TimePicker
+          defaultValue={moment(time, format)}
+          format={format}
+          placeholder="Horário"
+          onChange={(dateString) => setTime(dateString)}
         />
         <Button
           variant="contained"
           onClick={(e) => {
             e.preventDefault();
             addSection(sectionTitle);
+            console.log(time);
           }}
         >
           Nova Refeição
@@ -57,39 +62,3 @@ const FoodInput = ({ entries, sectionTitle, setSectionTitle, setSections }) => {
 };
 
 export default FoodInput;
-
-/* accordion: (
-  <Accordion>
-    <AccordionSummary
-      expandIcon={<ExpandMoreIcon />}
-      aria-controls="panel1a-content"
-      id="panel1a-header"
-    >
-      <Typography>
-        {
-          <div>
-            <ul>
-              <li>{input}</li>
-              <li>{time} Hrs</li>
-            </ul>
-            <Button variant="contained" onClick={addFood}>
-              Add Button
-            </Button>
-          </div>
-        }
-      </Typography>
-    </AccordionSummary>
-    <AccordionDetails>
-      <Typography>
-        {foodList.map((item) => {
-          return (
-            <div key={item.id}>
-              <h1>{item.name}</h1>
-              <h2>{item.amount}</h2>
-            </div>
-          );
-        })}
-      </Typography>
-    </AccordionDetails>
-  </Accordion>
-), */

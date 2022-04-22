@@ -3,13 +3,11 @@ import foodData from "../foodList.json";
 import FoodInput from "./input";
 import Section from "./sections";
 import { useAuth } from "../provider/auth";
+import { addItem, removeItem, removeSection } from "../tools/functions";
 import axios from "axios";
 
 function Main() {
-  const [acc, setAcc] = useState([]);
   const [input, setInput] = useState("");
-  const [time, setTime] = useState("");
-  const [foodList, setFoodList] = useState([]);
   const [sectionTitle, setSectionTitle] = useState("");
   const [entries, setEntries] = useState([]);
   const [foodInput, setFoodInput] = useState("");
@@ -29,26 +27,9 @@ function Main() {
     setFat,
     setCalories,
     setData,
+    value,
+    setValue,
   } = useAuth();
-
-  const getData = () => {
-    fetch("foodList.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((myJson) => setItemData([myJson]));
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  console.log(itemData);
 
   useEffect(() => {
     const foodObj = foodData.filter((item) =>
@@ -82,59 +63,23 @@ function Main() {
     }
   }, [foodInput]);
 
-  const addItem = (index, item) => {
-    if (item === "") return;
-
-    let baseQty = 100;
-    let userCarb = +((qnty * carb) / baseQty).toFixed(2);
-    let userProt = +((qnty * protein) / baseQty).toFixed(2);
-    let userFat = +((qnty * fat) / baseQty).toFixed(2);
-
-    let carbKcal = userCarb * 4;
-    let protKcal = userProt * 4;
-    let fatKcal = userFat * 9;
-
-    let totalKcal = +(carbKcal + protKcal + fatKcal).toFixed(2);
-
+  const saveEdit = (index, i, setEdit) => {
     const newSections = sections.slice();
-    newSections[index].food.push(item);
-    newSections[index].quantity.push(qnty);
-    newSections[index].carb.push(userCarb);
-    newSections[index].protein.push(userProt);
-    newSections[index].fat.push(userFat);
-    newSections[index].calories.push(totalKcal);
-    setSections(newSections);
-  };
-
-  const removeItem = (index, i) => {
-    const newSections = sections.slice();
-    const newFood = newSections[index].food;
     const newQnty = newSections[index].quantity;
-    const newCarb = newSections[index].carb;
-    const newProt = newSections[index].protein;
-    const newFat = newSections[index].fat;
 
-    newFood.splice(i, 1);
-    newQnty.splice(i, 1);
-    newCarb.splice(i, 1);
-    newProt.splice(i, 1);
-    newFat.splice(i, 1);
-    newSections[index].food = newFood;
+    newQnty.splice(i, 1, Number(value));
     newSections[index].quantity = newQnty;
-    newSections[index].carb = newCarb;
-    newSections[index].protein = newProt;
-    newSections[index].fat = newFat;
 
     setSections(newSections);
+    setValue(0);
+    setEdit(false);
   };
 
   return (
     <div>
       <FoodInput
         input={input}
-        time={time}
         setInput={setInput}
-        setTime={setTime}
         sectionTitle={sectionTitle}
         setSectionTitle={setSectionTitle}
         setSections={setSections}
@@ -153,8 +98,21 @@ function Main() {
             entries={entries}
             section={section}
             key={section.id}
-            addItem={(item) => addItem(index, item)}
-            removeItem={(i) => removeItem(index, i)}
+            addItem={(item) =>
+              addItem(
+                index,
+                item,
+                qnty,
+                carb,
+                protein,
+                fat,
+                sections,
+                setSections
+              )
+            }
+            removeItem={(i) => removeItem(index, i, sections, setSections)}
+            removeSection={() => removeSection(index, sections, setSections)}
+            saveEdit={(i, setEdit) => saveEdit(index, i, setEdit)}
           />
         ))
       ) : (

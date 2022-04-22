@@ -66,7 +66,7 @@ const BasicModal = ({
   return (
     <div>
       <Button onClick={handleOpen} variant="contained">
-        Open modal
+        Adicionar alimento
       </Button>
       <Modal
         open={open}
@@ -117,7 +117,7 @@ const BasicModal = ({
               </div>
             </div>
             <TextField
-              id="foodName"
+              id="foodQuantity"
               label="Quantidade"
               type="number"
               variant="standard"
