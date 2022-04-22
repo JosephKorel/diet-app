@@ -19,11 +19,9 @@ const Section = ({
 }) => {
   const [newFood, setNewFood] = useState("");
   const [hide, setHide] = useState(false);
-  const [edit, setEdit] = useState(false);
-  /*  const [newQnty, setNewQnty] = useState(section.quantity); */
   const [newCarb, setNewCarb] = useState(section.carb);
   const [newProt, setNewProt] = useState(section.protein);
-  const { qnty, setQnty, value, setValue } = useAuth();
+  const { qnty, setQnty, value, setValue, edit, setEdit } = useAuth();
 
   const editItem = (e) => {
     setValue(e.target.value);
@@ -83,26 +81,15 @@ const Section = ({
                   <h2>{item}</h2>
                   <div>
                     <h3>Quantidade</h3>
-                    {/* <input
-                      type="number"
-                      id={`Quantity_${i}`}
-                      value={newQnty[i]}
-                      onClick={(e) => editValue(e)}
-                       onChange={(e) => setValue(e.target.value)}
-                    ></input> */}
                     <TextField
                       type="number"
                       variant="standard"
-                      aria-readonly={true}
-                      value={edit === true ? value : section.quantity[i]}
+                      value={edit === i ? value : section.quantity[i]}
                       onChange={(e) => editItem(e)}
                     />
                     <br></br>
-                    {edit === true ? (
-                      <Button
-                        variant="contained"
-                        onClick={() => saveEdit(i, setEdit)}
-                      >
+                    {edit === i ? (
+                      <Button variant="contained" onClick={() => saveEdit(i)}>
                         Salvar
                       </Button>
                     ) : (
@@ -110,7 +97,9 @@ const Section = ({
                     )}
                   </div>
                   <ul>
-                    <li key={Math.random()}>Carboidratos: {newCarb[i]}g</li>
+                    <li key={Math.random()}>
+                      Carboidratos: {section.carb[i]}g
+                    </li>
                     <li key={Math.random()}>
                       Proteínas: {section.protein[i]}g
                     </li>
@@ -127,7 +116,7 @@ const Section = ({
                     Remover
                   </Button>
                   <br></br>
-                  <Button variant="contained" onClick={() => setEdit(true)}>
+                  <Button variant="contained" onClick={() => setEdit(i)}>
                     Editar Quantidade
                   </Button>
                 </>

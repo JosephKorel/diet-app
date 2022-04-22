@@ -14,6 +14,7 @@ export const AuthProvider = (props) => {
   const [calories, setCalories] = useState(0);
   const [data, setData] = useState([]);
   const [value, setValue] = useState(0);
+  const [edit, setEdit] = useState(-1);
   const [sections, setSections] = useState([
     {
       id: Math.random(),
@@ -50,6 +51,8 @@ export const AuthProvider = (props) => {
         setTime,
         value,
         setValue,
+        edit,
+        setEdit,
       }}
     >
       {props.children}

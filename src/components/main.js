@@ -29,6 +29,7 @@ function Main() {
     setData,
     value,
     setValue,
+    setEdit,
   } = useAuth();
 
   useEffect(() => {
@@ -63,16 +64,47 @@ function Main() {
     }
   }, [foodInput]);
 
-  const saveEdit = (index, i, setEdit) => {
-    const newSections = sections.slice();
-    const newQnty = newSections[index].quantity;
+  const saveEdit = (index, i) => {
+    const editedSections = sections.slice();
+    const newQnty = editedSections[index].quantity;
+    const newCarb = editedSections[index].carb.slice();
+    const newProt = editedSections[index].protein.slice();
+    const newFat = editedSections[index].fat.slice();
+    const newKcal = editedSections[index].calories.slice();
 
+    //Alterar os macros
+    const editedCarb = +(
+      (newCarb[i] * value) /
+      sections[index].quantity[i]
+    ).toFixed(2);
+    newCarb.splice(i, 1, editedCarb);
+    editedSections[index].carb = newCarb;
+
+    const editedProt = +(
+      (newProt[i] * value) /
+      sections[index].quantity[i]
+    ).toFixed(2);
+    newProt.splice(i, 1, editedProt);
+    editedSections[index].protein = newProt;
+
+    const editedFat = +(
+      (newFat[i] * value) /
+      sections[index].quantity[i]
+    ).toFixed(2);
+    newFat.splice(i, 1, editedFat);
+    editedSections[index].fat = newFat;
+
+    const editedKcal = editedCarb * 4 + editedProt * 4 + editedFat * 9;
+    newKcal.splice(i, 1, editedKcal);
+    editedSections[index].calories = newKcal;
+
+    // Alterar a quantidade
     newQnty.splice(i, 1, Number(value));
-    newSections[index].quantity = newQnty;
+    editedSections[index].quantity = newQnty;
 
-    setSections(newSections);
+    setSections(editedSections);
     setValue(0);
-    setEdit(false);
+    setEdit(-1);
   };
 
   return (
@@ -112,7 +144,7 @@ function Main() {
             }
             removeItem={(i) => removeItem(index, i, sections, setSections)}
             removeSection={() => removeSection(index, sections, setSections)}
-            saveEdit={(i, setEdit) => saveEdit(index, i, setEdit)}
+            saveEdit={(i) => saveEdit(index, i)}
           />
         ))
       ) : (
