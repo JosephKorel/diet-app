@@ -16,7 +16,7 @@ const Section = ({
   removeSection,
   saveEdit,
 }) => {
-  const [newFood, setNewFood] = useState(null);
+  const [newFood, setNewFood] = useState("");
   const [hide, setHide] = useState(false);
   const { qnty, setQnty, value, setValue, edit, setEdit, setFoodInput } =
     useAuth();

@@ -44,10 +44,10 @@ function Main() {
   }, []);
  */
 
-  useEffect(() => {
+  /* useEffect(() => {
     const teste = foodData.filter((item) => item.attributes.lipid);
-    console.log(teste.map((item) => item.qty));
-  }, []);
+    console.log(teste);
+  }, []); */
 
   useEffect(() => {
     try {
@@ -67,23 +67,27 @@ function Main() {
       setEntries([filter]);
     }
     if (foodj[0]) {
-      const foodId = foodj[0].id;
-      const nutrients = foodj[0].attributes;
-      const tableCarb = +nutrients.carbohydrate.qty.toFixed(2);
-      const tableProtein = +nutrients.protein.qty.toFixed(2);
-      const tableFat =
-        nutrients.lipid.qty !== "Tr" ? +nutrients.lipid.qty.toFixed(2) : 0;
-      setId(foodId);
-      setCarb(tableCarb);
-      setProtein(tableProtein);
-      setFat(tableFat);
-      setData([foodj]);
+      try {
+        const foodId = foodj[0].id;
+        const nutrients = foodj[0].attributes;
+        const tableCarb = +nutrients.carbohydrate.qty.toFixed(2);
+        const tableProtein = +nutrients.protein.qty.toFixed(2);
+        const tableFat =
+          nutrients.lipid.qty !== "Tr" ? +nutrients.lipid.qty.toFixed(2) : 0;
+        setId(foodId);
+        setCarb(tableCarb);
+        setProtein(tableProtein);
+        setFat(tableFat);
+        setData([foodj]);
 
-      const carbKcal = tableCarb * 4;
-      const protKcal = tableProtein * 4;
-      const fatKcal = tableFat * 9;
+        const carbKcal = tableCarb * 4;
+        const protKcal = tableProtein * 4;
+        const fatKcal = tableFat * 9;
 
-      setCalories(carbKcal + protKcal + fatKcal);
+        setCalories(carbKcal + protKcal + fatKcal);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, [foodInput]);
 

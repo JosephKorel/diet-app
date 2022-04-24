@@ -3,18 +3,17 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { useAuth } from "../provider/auth";
 
-export default function FoodField({ setShow }) {
+export default function FoodField({ setShow, newFood, setNewFood }) {
   const { entries, foodInput, setFoodInput } = useAuth();
-  const [value, setValue] = useState("");
 
   useEffect(() => {
-    setFoodInput(value);
-    if (value == "") setShow(false);
-  }, [value]);
+    setFoodInput(newFood);
+    if (newFood == "") setShow(false);
+  }, [newFood]);
   const values = [];
   const handleChange = (e, newValue) => {
     if (newValue !== null) {
-      setValue(newValue);
+      setNewFood(newValue);
     }
   };
 
@@ -23,23 +22,15 @@ export default function FoodField({ setShow }) {
       <Autocomplete
         disablePortal
         freeSolo={true}
-        value={value}
+        value={newFood}
         onInputChange={handleChange}
         onChange={() => setShow(true)}
         onOpen={() => setShow(false)}
         id="combo-box-demo"
         options={foodInput.length >= 3 ? entries[0] : values}
         sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => <TextField {...params} label="Alimento" />}
       />
-      <button
-        onClick={() => {
-          console.log(value);
-          console.log(foodInput);
-        }}
-      >
-        Click me
-      </button>
     </div>
   );
 }

@@ -46,13 +46,6 @@ const BasicModal = ({
     top: "130%",
   };
 
-  const suggestions = (e) => {
-    setNewFood(e.target.innerText);
-    setFoodInput(e.target.innerText);
-    setHide(true);
-    setShow(true);
-  };
-
   function closeAlert() {
     setAlert(false);
     setError(false);
@@ -99,38 +92,14 @@ const BasicModal = ({
               alignItems: "center",
             }}
           >
-            <FoodField setShow={setShow}></FoodField>
-            <TextField
-              id="foodName"
-              label="Alimento"
-              variant="standard"
-              value={newFood}
-              onChange={(e) => {
-                setNewFood(e.target.value);
-                setHide(false);
-                setFoodInput(e.target.value);
-                setShow(false);
-              }}
-              style={{ width: "300px" }}
-            />
-            {/* <div>
-              <div
-                className={
-                  newFood.length >= 3 && hide === false ? "sugg" : "hide"
-                }
-              >
-                {newFood.length >= 3 && hide === false ? (
-                  entries.map((item) =>
-                    item.map((obj) => <p onClick={suggestions}>{obj}</p>)
-                  )
-                ) : (
-                  <div></div>
-                )}
-              </div>
-            </div> */}
+            <FoodField
+              setShow={setShow}
+              newFood={newFood}
+              setNewFood={setNewFood}
+            ></FoodField>
             <TextField
               id="foodQuantity"
-              label="Quantidade"
+              label="Quantidade (g)"
               type="number"
               variant="standard"
               value={qnty}
