@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
 
 export const AuthContext = React.createContext({});
 
 export const AuthProvider = (props) => {
-  const hour = document.getElementById("time");
   const [input, setInput] = useState("");
-  const [time, setTime] = useState("00:00");
+  const [entries, setEntries] = useState([]);
+  const [foodInput, setFoodInput] = useState("");
+  const [time, setTime] = useState("08:00");
   const [carb, setCarb] = useState(0);
   const [protein, setProtein] = useState(0);
   const [fat, setFat] = useState(0);
@@ -18,8 +18,8 @@ export const AuthProvider = (props) => {
   const [sections, setSections] = useState([
     {
       id: Math.random(),
-      title: "First Meal",
-      time: time,
+      title: "",
+      time: "",
       food: [],
       quantity: [],
       carb: [],
@@ -53,6 +53,10 @@ export const AuthProvider = (props) => {
         setValue,
         edit,
         setEdit,
+        entries,
+        setEntries,
+        foodInput,
+        setFoodInput,
       }}
     >
       {props.children}

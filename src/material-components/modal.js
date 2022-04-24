@@ -4,24 +4,25 @@ import { Alert, Button, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useAuth } from "../provider/auth";
+import FoodField from "./auto-complete";
+import FoodInput from "../components/input";
 
 const BasicModal = ({
   newFood,
   setNewFood,
   hide,
   setHide,
-  setFoodInput,
   qnty,
   setQnty,
   addItem,
-  entries,
 }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { carb, protein, fat, data } = useAuth();
+  const { carb, protein, fat, entries, foodInput, setFoodInput } = useAuth();
   const [show, setShow] = useState(false);
   const [alert, setAlert] = useState(false);
+  const [error, setError] = useState(false);
 
   const style = {
     position: "absolute",
@@ -35,11 +36,14 @@ const BasicModal = ({
     p: 4,
   };
 
-  const other = { display: "flex", flexDirection: "column" };
-
   const alertStyle = {
     position: "absolute",
     top: "210%",
+  };
+
+  const errorStyle = {
+    position: "absolute",
+    top: "130%",
   };
 
   const suggestions = (e) => {
@@ -51,16 +55,23 @@ const BasicModal = ({
 
   function closeAlert() {
     setAlert(false);
+    setError(false);
   }
 
   const addFood = (e) => {
-    e.preventDefault();
-    addItem(newFood);
-    setNewFood("");
-    setShow(false);
-    setQnty(0);
-    setAlert(true);
-    setTimeout(closeAlert, 2000);
+    if (qnty > 0) {
+      e.preventDefault();
+      addItem(newFood);
+      setNewFood("");
+      setShow(false);
+      setError(false);
+      setQnty(0);
+      setAlert(true);
+      setTimeout(closeAlert, 2000);
+    } else {
+      setError(true);
+      setTimeout(closeAlert, 2000);
+    }
   };
 
   return (
@@ -88,6 +99,7 @@ const BasicModal = ({
               alignItems: "center",
             }}
           >
+            <FoodField setShow={setShow}></FoodField>
             <TextField
               id="foodName"
               label="Alimento"
@@ -101,7 +113,7 @@ const BasicModal = ({
               }}
               style={{ width: "300px" }}
             />
-            <div>
+            {/* <div>
               <div
                 className={
                   newFood.length >= 3 && hide === false ? "sugg" : "hide"
@@ -115,7 +127,7 @@ const BasicModal = ({
                   <div></div>
                 )}
               </div>
-            </div>
+            </div> */}
             <TextField
               id="foodQuantity"
               label="Quantidade"
@@ -129,7 +141,9 @@ const BasicModal = ({
             </Button>
             {show === true ? (
               <div>
-                <h1>{entries.slice(0, 1)}</h1>
+                <h1>
+                  {entries.map((item) => item.slice(0, 1).map((obj) => obj))}
+                </h1>
                 <h2>Valor nutricional em 100 gramas</h2>
                 <ul>
                   <li>Carboidratos: {carb}g</li>
@@ -143,6 +157,13 @@ const BasicModal = ({
             {alert === true ? (
               <div style={alertStyle}>
                 <Alert severity="success">Alimento adicionado!</Alert>
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {error === true ? (
+              <div style={errorStyle}>
+                <Alert severity="error">Insira uma quantidade válida</Alert>
               </div>
             ) : (
               <div></div>

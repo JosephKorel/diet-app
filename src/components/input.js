@@ -44,7 +44,9 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
           defaultValue={moment(time, format)}
           format={format}
           placeholder="Horário"
-          onChange={(dateString) => setTime(dateString)}
+          onChange={(value, dateString) => {
+            setTime(dateString);
+          }}
         />
         <Button
           variant="contained"

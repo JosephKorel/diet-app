@@ -47,17 +47,21 @@ export const removeItem = (index, i, sections, setSections) => {
   const newCarb = newSections[index].carb;
   const newProt = newSections[index].protein;
   const newFat = newSections[index].fat;
+  const newKcal = newSections[index].calories;
 
   newFood.splice(i, 1);
   newQnty.splice(i, 1);
   newCarb.splice(i, 1);
   newProt.splice(i, 1);
   newFat.splice(i, 1);
+  newKcal.splice(i, 1);
+
   newSections[index].food = newFood;
   newSections[index].quantity = newQnty;
   newSections[index].carb = newCarb;
   newSections[index].protein = newProt;
   newSections[index].fat = newFat;
+  newSections[index].calories = newKcal;
 
   setSections(newSections);
 };

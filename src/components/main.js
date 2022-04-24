@@ -4,22 +4,18 @@ import FoodInput from "./input";
 import Section from "./sections";
 import { useAuth } from "../provider/auth";
 import { addItem, removeItem, removeSection } from "../tools/functions";
-import axios from "axios";
 
 function Main() {
   const [input, setInput] = useState("");
   const [sectionTitle, setSectionTitle] = useState("");
-  const [entries, setEntries] = useState([]);
-  const [foodInput, setFoodInput] = useState("");
   const [id, setId] = useState(0);
-  const [itemData, setItemData] = useState([]);
+  const [foodj, setFoodj] = useState([]);
 
   const {
     qnty,
     carb,
     protein,
     fat,
-    data,
     sections,
     setSections,
     setCarb,
@@ -30,12 +26,38 @@ function Main() {
     value,
     setValue,
     setEdit,
+    entries,
+    setEntries,
+    foodInput,
+    setFoodInput,
   } = useAuth();
 
+  /* useEffect(() => {
+    fetch("../foodList.json")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        return console.log(data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
+ */
+
   useEffect(() => {
-    const foodObj = foodData.filter((item) =>
-      item.description.includes(foodInput)
-    );
+    const teste = foodData.filter((item) => item.attributes.lipid);
+    console.log(teste.map((item) => item.qty));
+  }, []);
+
+  useEffect(() => {
+    try {
+      const foodObj = foodData.filter((item) =>
+        item.description.includes(foodInput)
+      );
+      setFoodj(foodObj);
+    } catch (error) {
+      console.log(error);
+    }
 
     if (foodInput !== "") {
       const description = foodData.map((item) => item.description);
@@ -44,17 +66,18 @@ function Main() {
       );
       setEntries([filter]);
     }
-    if (foodObj[0]) {
-      const foodId = foodObj[0].id;
-      const nutrients = foodObj[0].attributes;
+    if (foodj[0]) {
+      const foodId = foodj[0].id;
+      const nutrients = foodj[0].attributes;
       const tableCarb = +nutrients.carbohydrate.qty.toFixed(2);
       const tableProtein = +nutrients.protein.qty.toFixed(2);
-      const tableFat = +nutrients.lipid.qty.toFixed(2);
+      const tableFat =
+        nutrients.lipid.qty !== "Tr" ? +nutrients.lipid.qty.toFixed(2) : 0;
       setId(foodId);
       setCarb(tableCarb);
       setProtein(tableProtein);
       setFat(tableFat);
-      setData([foodObj]);
+      setData([foodj]);
 
       const carbKcal = tableCarb * 4;
       const protKcal = tableProtein * 4;
@@ -72,39 +95,48 @@ function Main() {
     const newFat = editedSections[index].fat.slice();
     const newKcal = editedSections[index].calories.slice();
 
-    //Alterar os macros
-    const editedCarb = +(
-      (newCarb[i] * value) /
-      sections[index].quantity[i]
-    ).toFixed(2);
-    newCarb.splice(i, 1, editedCarb);
-    editedSections[index].carb = newCarb;
+    if (value !== 0) {
+      //Alterar os macros
+      const editedCarb = +(
+        (newCarb[i] * value) /
+        sections[index].quantity[i]
+      ).toFixed(2);
+      newCarb.splice(i, 1, editedCarb);
+      editedSections[index].carb = newCarb;
 
-    const editedProt = +(
-      (newProt[i] * value) /
-      sections[index].quantity[i]
-    ).toFixed(2);
-    newProt.splice(i, 1, editedProt);
-    editedSections[index].protein = newProt;
+      const editedProt = +(
+        (newProt[i] * value) /
+        sections[index].quantity[i]
+      ).toFixed(2);
+      newProt.splice(i, 1, editedProt);
+      editedSections[index].protein = newProt;
 
-    const editedFat = +(
-      (newFat[i] * value) /
-      sections[index].quantity[i]
-    ).toFixed(2);
-    newFat.splice(i, 1, editedFat);
-    editedSections[index].fat = newFat;
+      const editedFat = +(
+        (newFat[i] * value) /
+        sections[index].quantity[i]
+      ).toFixed(2);
+      newFat.splice(i, 1, editedFat);
+      editedSections[index].fat = newFat;
 
-    const editedKcal = editedCarb * 4 + editedProt * 4 + editedFat * 9;
-    newKcal.splice(i, 1, editedKcal);
-    editedSections[index].calories = newKcal;
+      const editedKcal = +(
+        editedCarb * 4 +
+        editedProt * 4 +
+        editedFat * 9
+      ).toFixed(2);
+      newKcal.splice(i, 1, editedKcal);
+      editedSections[index].calories = newKcal;
 
-    // Alterar a quantidade
-    newQnty.splice(i, 1, Number(value));
-    editedSections[index].quantity = newQnty;
+      // Alterar a quantidade
+      newQnty.splice(i, 1, Number(value));
+      editedSections[index].quantity = newQnty;
 
-    setSections(editedSections);
-    setValue(0);
-    setEdit(-1);
+      setSections(editedSections);
+      setValue(0);
+      setEdit(-1);
+    } else {
+      removeItem(index, i, sections, setSections);
+      setEdit(-1);
+    }
   };
 
   return (
