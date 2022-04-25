@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-export function addFood(input, amount, food, foodList, setFood, setFoodList) {
+/* export function addFood(input, amount, food, foodList, setFood, setFoodList) {
   setFood({ amount: amount });
   setFoodList([...foodList, food]);
 
   console.log("hello");
-}
+} */
 
 export const addItem = (
   index,
@@ -70,4 +70,65 @@ export const removeSection = (index, sections, setSections) => {
   const newSections = sections.slice();
   newSections.splice(index, 1);
   setSections(newSections);
+};
+
+export const saveEdit = (
+  index,
+  i,
+  sections,
+  setSections,
+  value,
+  setEdit,
+  setValue,
+  removeItem
+) => {
+  const editedSections = sections.slice();
+  const newQnty = editedSections[index].quantity;
+  const newCarb = editedSections[index].carb.slice();
+  const newProt = editedSections[index].protein.slice();
+  const newFat = editedSections[index].fat.slice();
+  const newKcal = editedSections[index].calories.slice();
+
+  if (value !== 0) {
+    //Alterar os macros
+    const editedCarb = +(
+      (newCarb[i] * value) /
+      sections[index].quantity[i]
+    ).toFixed(2);
+    newCarb.splice(i, 1, editedCarb);
+    editedSections[index].carb = newCarb;
+
+    const editedProt = +(
+      (newProt[i] * value) /
+      sections[index].quantity[i]
+    ).toFixed(2);
+    newProt.splice(i, 1, editedProt);
+    editedSections[index].protein = newProt;
+
+    const editedFat = +(
+      (newFat[i] * value) /
+      sections[index].quantity[i]
+    ).toFixed(2);
+    newFat.splice(i, 1, editedFat);
+    editedSections[index].fat = newFat;
+
+    const editedKcal = +(
+      editedCarb * 4 +
+      editedProt * 4 +
+      editedFat * 9
+    ).toFixed(2);
+    newKcal.splice(i, 1, editedKcal);
+    editedSections[index].calories = newKcal;
+
+    // Alterar a quantidade
+    newQnty.splice(i, 1, Number(value));
+    editedSections[index].quantity = newQnty;
+
+    setSections(editedSections);
+    console.log(typeof value);
+    setEdit(-1);
+  } else {
+    removeItem(index, i, sections, setSections);
+    setEdit(-1);
+  }
 };

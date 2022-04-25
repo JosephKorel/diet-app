@@ -4,6 +4,7 @@ import FoodInput from "./input";
 import Section from "./sections";
 import { useAuth } from "../provider/auth";
 import { addItem, removeItem, removeSection } from "../tools/functions";
+import BottomNav from "../material-components/bottom-nav";
 
 function Main() {
   const [input, setInput] = useState("");
@@ -33,7 +34,6 @@ function Main() {
   useEffect(() => {
     const userFood = foodData.filter((item) => item.description === foodInput);
     setFood(userFood);
-    console.log(userFood);
   }, [foodInput]);
 
   useEffect(() => {
@@ -163,6 +163,7 @@ function Main() {
       ) : (
         <div></div>
       )}
+      <BottomNav></BottomNav>
     </div>
   );
 }
