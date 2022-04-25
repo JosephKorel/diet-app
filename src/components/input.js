@@ -53,7 +53,6 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
           onClick={(e) => {
             e.preventDefault();
             addSection(sectionTitle);
-            console.log(time);
           }}
         >
           Nova Refeição

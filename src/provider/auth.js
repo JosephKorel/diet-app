@@ -12,7 +12,6 @@ export const AuthProvider = (props) => {
   const [fat, setFat] = useState(0);
   const [qnty, setQnty] = useState(0);
   const [calories, setCalories] = useState(0);
-  const [data, setData] = useState([]);
   const [value, setValue] = useState(0);
   const [edit, setEdit] = useState(-1);
   const [sections, setSections] = useState([
@@ -43,8 +42,6 @@ export const AuthProvider = (props) => {
         setCalories,
         qnty,
         setQnty,
-        data,
-        setData,
         sections,
         setSections,
         time,

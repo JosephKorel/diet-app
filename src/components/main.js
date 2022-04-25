@@ -8,8 +8,7 @@ import { addItem, removeItem, removeSection } from "../tools/functions";
 function Main() {
   const [input, setInput] = useState("");
   const [sectionTitle, setSectionTitle] = useState("");
-  const [id, setId] = useState(0);
-  const [foodj, setFoodj] = useState([]);
+  const [food, setFood] = useState([]);
 
   const {
     qnty,
@@ -22,7 +21,6 @@ function Main() {
     setProtein,
     setFat,
     setCalories,
-    setData,
     value,
     setValue,
     setEdit,
@@ -32,33 +30,13 @@ function Main() {
     setFoodInput,
   } = useAuth();
 
-  /* useEffect(() => {
-    fetch("../foodList.json")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        return console.log(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
- */
-
-  /* useEffect(() => {
-    const teste = foodData.filter((item) => item.attributes.lipid);
-    console.log(teste);
-  }, []); */
+  useEffect(() => {
+    const userFood = foodData.filter((item) => item.description === foodInput);
+    setFood(userFood);
+    console.log(userFood);
+  }, [foodInput]);
 
   useEffect(() => {
-    try {
-      const foodObj = foodData.filter((item) =>
-        item.description.includes(foodInput)
-      );
-      setFoodj(foodObj);
-    } catch (error) {
-      console.log(error);
-    }
-
     if (foodInput !== "") {
       const description = foodData.map((item) => item.description);
       const filter = description.filter((item) =>
@@ -66,20 +44,20 @@ function Main() {
       );
       setEntries([filter]);
     }
-    if (foodj[0]) {
+    if (food[0]) {
       try {
-        const foodId = foodj[0].id;
-        const nutrients = foodj[0].attributes;
-        const tableCarb = +nutrients.carbohydrate.qty.toFixed(2);
-        const tableProtein = +nutrients.protein.qty.toFixed(2);
+        const nutrients = food[0].attributes;
+        const tableCarb = nutrients.carbohydrate
+          ? +nutrients.carbohydrate.qty.toFixed(2)
+          : 0;
+        const tableProtein = nutrients.protein
+          ? +nutrients.protein.qty.toFixed(2)
+          : 0;
         const tableFat =
           nutrients.lipid.qty !== "Tr" ? +nutrients.lipid.qty.toFixed(2) : 0;
-        setId(foodId);
         setCarb(tableCarb);
         setProtein(tableProtein);
         setFat(tableFat);
-        setData([foodj]);
-
         const carbKcal = tableCarb * 4;
         const protKcal = tableProtein * 4;
         const fatKcal = tableFat * 9;
@@ -89,7 +67,7 @@ function Main() {
         console.log(error);
       }
     }
-  }, [foodInput]);
+  }, [food]);
 
   const saveEdit = (index, i) => {
     const editedSections = sections.slice();
@@ -159,7 +137,6 @@ function Main() {
           <Section
             sections={sections}
             input={input}
-            id={id}
             index={index}
             setInput={setInput}
             setFoodInput={setFoodInput}

@@ -5,21 +5,12 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useAuth } from "../provider/auth";
 import FoodField from "./auto-complete";
-import FoodInput from "../components/input";
 
-const BasicModal = ({
-  newFood,
-  setNewFood,
-  hide,
-  setHide,
-  qnty,
-  setQnty,
-  addItem,
-}) => {
+const BasicModal = ({ newFood, setNewFood, qnty, setQnty, addItem }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { carb, protein, fat, entries, foodInput, setFoodInput } = useAuth();
+  const { carb, protein, fat, entries } = useAuth();
   const [show, setShow] = useState(false);
   const [alert, setAlert] = useState(false);
   const [error, setError] = useState(false);
