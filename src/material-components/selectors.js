@@ -12,6 +12,9 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
+import PropTypes from "prop-types";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Tooltip } from "antd";
 
 export function SexSelector({ sex, setSex }) {
   const handleChange = (event) => {
@@ -40,7 +43,11 @@ export function ActSelector({ act, setAct }) {
     <Box sx={{ width: "220px" }}>
       <FormControl fullWidth>
         <InputLabel id="activity">Nível de atividade física</InputLabel>
-        <Select value={act} label="Activity" onChange={handleChange}>
+        <Select
+          value={act}
+          label="Nível de atividade física"
+          onChange={handleChange}
+        >
           <MenuItem value={1.2}>Sedentário</MenuItem>
           <MenuItem value={1.375}>Leve</MenuItem>
           <MenuItem value={1.55}>Moderado</MenuItem>
@@ -52,7 +59,7 @@ export function ActSelector({ act, setAct }) {
   );
 }
 
-export function BasicPopover() {
+export function ActivityPopover() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -162,5 +169,81 @@ export function GenderRadio({ tmb, sex, setSex }) {
         />
       </RadioGroup>
     </FormControl>
+  );
+}
+
+export function KcalProgress(props, tmb, totalKcal) {
+  return (
+    <Box sx={{ position: "relative", display: "inline-flex" }}>
+      <CircularProgress variant="determinate" {...props} />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Typography variant="caption" component="div" color="text.secondary">
+          {totalKcal !== 0 ? (totalKcal / tmb[1]) * 100 : 0}%
+        </Typography>
+      </Box>
+    </Box>
+  );
+}
+
+KcalProgress.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate variant.
+   * Value between 0 and 100.
+   * @default 0
+   */
+  value: PropTypes.number.isRequired,
+};
+
+export default function ThisKcal() {
+  return <KcalProgress />;
+}
+
+export function ValuesPopover() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  return (
+    <div>
+      <InfoIcon
+        aria-describedby={id}
+        onMouseEnter={handleClick}
+        sx={{ cursor: "pointer" }}
+      ></InfoIcon>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+      >
+        <Typography sx={{ p: 2 }}>
+          Valores estimados utilizando o método Harris-Bennet
+        </Typography>
+      </Popover>
+    </div>
   );
 }

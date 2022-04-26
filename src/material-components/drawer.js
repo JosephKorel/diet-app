@@ -4,15 +4,13 @@ import Drawer from "@mui/material/Drawer";
 import { Button, TextField } from "@mui/material";
 import {
   ActSelector,
-  BasicPopover,
+  ActivityPopover,
   GenderRadio,
   ObjectiveRadio,
-  SexSelector,
 } from "./selectors";
 import { useAuth } from "../provider/auth";
 
 export default function DataDrawer() {
-  /* React.useEffect(() => {}, [tmb]); */
   const [state, setState] = React.useState({
     bottom: false,
   });
@@ -92,7 +90,7 @@ export default function DataDrawer() {
         onClick={(e) => console.log(e.target.value)}
       ></TextField>
       <ActSelector act={act} setAct={setAct}></ActSelector>
-      <BasicPopover></BasicPopover>
+      <ActivityPopover></ActivityPopover>
       <ObjectiveRadio
         objective={objective}
         setObjective={setObjective}
