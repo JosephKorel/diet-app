@@ -14,6 +14,8 @@ export const AuthProvider = (props) => {
   const [calories, setCalories] = useState(0);
   const [value, setValue] = useState(0);
   const [edit, setEdit] = useState(-1);
+  const [tmb, setTmb] = useState([0, 0]);
+  const [objective, setObjective] = useState("");
   const [sections, setSections] = useState([
     {
       id: Math.random(),
@@ -54,6 +56,10 @@ export const AuthProvider = (props) => {
         setEntries,
         foodInput,
         setFoodInput,
+        tmb,
+        setTmb,
+        objective,
+        setObjective,
       }}
     >
       {props.children}

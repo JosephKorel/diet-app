@@ -24,7 +24,14 @@ export default function BottomNav() {
         <div></div>
       )}
       <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: "70%",
+          margin: "auto",
+        }}
         elevation={3}
       >
         <BottomNavigation

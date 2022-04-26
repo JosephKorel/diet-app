@@ -4,6 +4,7 @@ import { Button, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useAuth } from "../provider/auth";
+import DataDrawer from "./drawer";
 
 const style = {
   position: "absolute",
@@ -18,7 +19,8 @@ const style = {
 };
 
 const OverviewModal = ({ open, setOpen, setValue }) => {
-  const { sections } = useAuth();
+  const { sections, tmb } = useAuth();
+  const [drawer, setDrawer] = React.useState(false);
 
   let totalCarb = 0;
   let totalProt = 0;
@@ -56,15 +58,27 @@ const OverviewModal = ({ open, setOpen, setValue }) => {
     setValue(0);
   };
 
+  const UserData = () => {
+    return (
+      <div>
+        <h2>TMB estimada: {tmb[0]} Kcal</h2>
+        <h3>Gasto energético estimado: {tmb[1]} Kcal</h3>
+      </div>
+    );
+  };
+
   return (
     <div>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={drawer === true ? console.log() : handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Visão geral
+          </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <ul>
               <li>C: {totalCarb}g</li>
@@ -72,9 +86,8 @@ const OverviewModal = ({ open, setOpen, setValue }) => {
               <li>G: {totalFat}g</li>
               <li>Kcal: {totalKcal}</li>
             </ul>
-            <Button variant="contained" onClick={handleClose}>
-              Não
-            </Button>
+            {tmb[0] !== 0 ? <UserData></UserData> : <div></div>}
+            <DataDrawer drawer={drawer} setDrawer={setDrawer}></DataDrawer>
           </Typography>
         </Box>
       </Modal>
