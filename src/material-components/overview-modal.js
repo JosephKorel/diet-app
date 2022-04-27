@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -19,9 +19,9 @@ const style = {
   p: 4,
 };
 
-const OverviewModal = ({ open, setOpen, setValue }) => {
+const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
   const { sections, tmb, objective } = useAuth();
-  const [drawer, setDrawer] = React.useState(false);
+  const [drawer, setDrawer] = useState(false);
 
   let totalCarb = 0;
   let totalProt = 0;
@@ -60,7 +60,7 @@ const OverviewModal = ({ open, setOpen, setValue }) => {
 
   const handleClose = () => {
     setOpen(false);
-    setValue(0);
+    setValue(preValue);
   };
 
   const valueInfo = "Valores estimados utilizando o método Harris-Bennet";
@@ -116,8 +116,6 @@ const OverviewModal = ({ open, setOpen, setValue }) => {
       </div>
     );
   };
-
-  console.log((totalKcal / tmb[1]) * 100);
 
   return (
     <div>

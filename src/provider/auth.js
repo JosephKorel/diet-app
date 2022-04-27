@@ -16,6 +16,7 @@ export const AuthProvider = (props) => {
   const [edit, setEdit] = useState(-1);
   const [tmb, setTmb] = useState([0, 0]);
   const [objective, setObjective] = useState("");
+  const [theme, setTheme] = useState(null);
   const [sections, setSections] = useState([
     {
       id: Math.random(),
@@ -29,6 +30,10 @@ export const AuthProvider = (props) => {
       calories: [],
     },
   ]);
+
+  const toggleTheme = () => {
+    setTheme((curr) => (curr == "dark" ? "light" : "dark"));
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -60,6 +65,8 @@ export const AuthProvider = (props) => {
         setTmb,
         objective,
         setObjective,
+        theme,
+        toggleTheme,
       }}
     >
       {props.children}

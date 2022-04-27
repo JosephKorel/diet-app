@@ -29,6 +29,8 @@ function Main() {
     setEntries,
     foodInput,
     setFoodInput,
+    theme,
+    toggleTheme,
   } = useAuth();
 
   useEffect(() => {
@@ -163,7 +165,7 @@ function Main() {
       ) : (
         <div></div>
       )}
-      <BottomNav></BottomNav>
+      {/* <BottomNav></BottomNav> */}
     </div>
   );
 }
