@@ -4,7 +4,6 @@ import FoodInput from "./input";
 import Section from "./sections";
 import { useAuth } from "../provider/auth";
 import { addItem, removeItem, removeSection } from "../tools/functions";
-import BottomNav from "../material-components/bottom-nav";
 
 function Main() {
   const [input, setInput] = useState("");
@@ -32,6 +31,12 @@ function Main() {
     theme,
     toggleTheme,
   } = useAuth();
+
+  useEffect(() => {
+    document.body.style.backgroundColor = `${
+      theme == "light" ? "#d3ffd3" : "#1a1a1a"
+    }`;
+  }, [theme]);
 
   useEffect(() => {
     const userFood = foodData.filter((item) => item.description === foodInput);

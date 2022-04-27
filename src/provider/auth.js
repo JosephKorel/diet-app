@@ -16,7 +16,7 @@ export const AuthProvider = (props) => {
   const [edit, setEdit] = useState(-1);
   const [tmb, setTmb] = useState([0, 0]);
   const [objective, setObjective] = useState("");
-  const [theme, setTheme] = useState(null);
+  const [theme, setTheme] = useState("light");
   const [sections, setSections] = useState([
     {
       id: Math.random(),
