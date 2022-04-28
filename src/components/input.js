@@ -3,16 +3,14 @@ import React from "react";
 import moment from "moment";
 import "antd/dist/antd.css";
 import { TimePicker } from "antd";
+import locale from "antd/es/date-picker/locale/pt_BR";
 import { useAuth } from "../provider/auth";
 import ReactSwitch from "react-switch";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NightlightIcon from "@mui/icons-material/Nightlight";
-import { pink } from "@mui/material/colors";
 
 const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
   const { time, setTime, theme, toggleTheme } = useAuth();
-
-  const pinkColor = pink["A400"];
 
   const addSection = (title) => {
     if (title === "") return;
@@ -47,14 +45,16 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
         ></ReactSwitch>
       </div>
       <h1 className="text-7xl text-center">Título</h1>
-      <div className="w-8/12 m-auto flex align-center justify-between bg-white p-5 rounded-xl">
+      <div className="w-8/12 m-auto flex align-center justify-between bg-white p-5 rounded-3xl">
         <TextField
+          className="flex-0.5"
           id="refName"
           label="Refeição"
           variant="standard"
           value={sectionTitle}
           onChange={(e) => setSectionTitle(e.target.value)}
           sx={{ width: "250px" }}
+          color="secondary"
         />
         <TimePicker
           defaultValue={moment(time, format)}
@@ -63,16 +63,24 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
           onChange={(value, dateString) => {
             setTime(dateString);
           }}
+          locale={{
+            ...locale,
+            lang: {
+              ...locale.lang,
+              now: "Agora",
+              ok: "Ok",
+            },
+          }}
         />
-        <Button
-          variant="contained"
+        <img
+          src="add-pink.png"
+          alt="Adicionar"
+          className="hover:scale-105 duration-100 cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             addSection(sectionTitle);
           }}
-        >
-          Nova Refeição
-        </Button>
+        ></img>
       </div>
     </div>
   );

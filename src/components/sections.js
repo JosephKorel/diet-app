@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BasicModal from "../material-components/modal";
 import { Button, TextField } from "@mui/material";
+import { Progress } from "antd";
 
 const Section = ({
   section,
@@ -40,22 +41,31 @@ const Section = ({
   return (
     <div>
       {section.title !== "" ? (
-        <div>
+        <div className="mt-10 w-9/12 m-auto">
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography>
-                <h1>{section.title}</h1>
-                <h2>{section.time}</h2>
-                <ul>
-                  <li>C: {carbSum}g</li>
-                  <li>P: {protSum}g</li>
-                  <li>G: {fatSum}g</li>
-                  <li>Kcal: {kcalSum}</li>
-                </ul>
+              <Typography className="w-full">
+                <div className="flex align-center justify-evenly">
+                  <div>
+                    <h1 className="text-2xl">{section.title}</h1>
+                    <h2 className="text-xl">{section.time}</h2>
+                  </div>
+                  <div>
+                    <ul>
+                      <li>
+                        <Progress percent={50} strokeColor="red"></Progress>
+                      </li>
+                      <li>C: {carbSum}g</li>
+                      <li>P: {protSum}g</li>
+                      <li>G: {fatSum}g</li>
+                      <li>Kcal: {kcalSum}</li>
+                    </ul>
+                  </div>
+                </div>
                 <Button variant="contained" onClick={() => removeSection()}>
                   Remover
                 </Button>
