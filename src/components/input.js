@@ -35,7 +35,7 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
   const format = "HH:mm";
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 font-sans">
       <div className="ml-10">
         <ReactSwitch
           onChange={toggleTheme}
@@ -44,7 +44,9 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
           uncheckedIcon={<NightlightIcon></NightlightIcon>}
         ></ReactSwitch>
       </div>
-      <h1 className="text-7xl text-center">Título</h1>
+      <h1 className="text-7xl text-center">
+        <span className="text-9xl text-secondary">M</span>acro tracker
+      </h1>
       <div className="w-8/12 m-auto flex align-center justify-between bg-white p-5 rounded-3xl">
         <TextField
           className="flex-0.5"
