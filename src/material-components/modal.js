@@ -36,12 +36,12 @@ const BasicModal = ({
 
   const alertStyle = {
     position: "absolute",
-    top: "210%",
+    top: "110%",
   };
 
   const errorStyle = {
     position: "absolute",
-    top: "130%",
+    top: "110%",
   };
 
   function closeAlert() {
@@ -59,7 +59,8 @@ const BasicModal = ({
       setQnty(0);
       setAlert(true);
       setTimeout(closeAlert, 2000);
-    } else {
+    } else if (newFood == "") return;
+    else {
       setError(true);
       setTimeout(closeAlert, 2000);
     }
@@ -83,72 +84,89 @@ const BasicModal = ({
           backdropFilter: "blur(2px)",
         }}
       >
-        <div className="glass bg-white font-sans">
-          {/* <Typography id="modal-modal-title" variant="h4" component="h2">
-            Adicionar Alimentosss
-          </Typography> */}
-          <h1 className="text-stone-800 text-4xl p-5">Adicionar alimento</h1>
-          <Typography
-            id="modal-modal-description"
-            sx={{
-              mt: 2,
-              /*  display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center", */
-            }}
-          >
-            <div className="w-full flex align-center justify-evenly mt-10">
-              <FoodField
-                setShow={setShow}
-                newFood={newFood}
-                setNewFood={setNewFood}
-              ></FoodField>
-              <TextField
-                id="foodQuantity"
-                label="Quantidade (g)"
-                type="number"
-                variant="standard"
-                value={qnty}
-                onChange={(e) => setQnty(e.target.value)}
-                color="secondary"
-              />
-              <Button variant="contained" onClick={addFood} color="secondary">
-                Adicionar
-              </Button>
-            </div>
-            {show === true ? (
-              <div className="p-5 mt-10">
-                <h1 className="text-stone-800 text-5xl">
-                  {entries.map((item) => item.slice(0, 1).map((obj) => obj))}
-                </h1>
-                <h2 className="text-xl italic">
-                  Valor nutricional em 100 gramas
-                </h2>
-                <ul className="text-lg">
-                  <li>Carboidratos: {carb}g</li>
-                  <li>Proteínas: {protein}g</li>
-                  <li>Gorduras: {fat}g</li>
-                </ul>
+        <div className="flex flex-col">
+          <div className="glass bg-white font-sans">
+            <h1 className="text-stone-800 text-4xl p-5">Adicionar alimento</h1>
+            <Typography
+              id="modal-modal-description"
+              sx={{
+                mt: 2,
+              }}
+            >
+              <div className="flex flex-col align-center justify-center">
+                <div>
+                  <div className="w-full flex align-center justify-evenly mt-10">
+                    <FoodField
+                      setShow={setShow}
+                      newFood={newFood}
+                      setNewFood={setNewFood}
+                    ></FoodField>
+                    <TextField
+                      id="foodQuantity"
+                      label="Quantidade (g)"
+                      type="number"
+                      variant="standard"
+                      value={qnty}
+                      onChange={(e) => setQnty(e.target.value)}
+                      color="secondary"
+                    />
+                    <Button
+                      variant="contained"
+                      onClick={addFood}
+                      color="secondary"
+                    >
+                      Adicionar
+                    </Button>
+                  </div>
+                  {show === true ? (
+                    <div className="p-5 mt-10">
+                      <h1 className="text-stone-800 text-5xl">
+                        {entries.map((item) =>
+                          item.slice(0, 1).map((obj) => obj)
+                        )}
+                      </h1>
+                      <h2 className="text-xl italic">
+                        Valor nutricional em 100 gramas
+                      </h2>
+                      <ul className="text-lg">
+                        <li>Carboidratos: {carb}g</li>
+                        <li>Proteínas: {protein}g</li>
+                        <li>Gorduras: {fat}g</li>
+                      </ul>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+                <div>
+                  {alert === true ? (
+                    <div style={alertStyle} className="w-full">
+                      <Alert
+                        severity="success"
+                        sx={{ width: "270px", margin: "auto" }}
+                      >
+                        Alimento adicionado!
+                      </Alert>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+                  {error === true ? (
+                    <div style={errorStyle} className="w-full">
+                      <Alert
+                        severity="error"
+                        sx={{ width: "270px", margin: "auto" }}
+                      >
+                        Insira uma quantidade válida
+                      </Alert>
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
               </div>
-            ) : (
-              <div></div>
-            )}
-            {alert === true ? (
-              <div style={alertStyle}>
-                <Alert severity="success">Alimento adicionado!</Alert>
-              </div>
-            ) : (
-              <div></div>
-            )}
-            {error === true ? (
-              <div style={errorStyle}>
-                <Alert severity="error">Insira uma quantidade válida</Alert>
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </Typography>
+            </Typography>
+          </div>
         </div>
       </Modal>
     </div>

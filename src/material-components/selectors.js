@@ -247,3 +247,50 @@ export function ValuesPopover() {
     </div>
   );
 }
+
+export function HelpPop() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  return (
+    <div>
+      <InfoIcon
+        aria-describedby={id}
+        onClick={handleClick}
+        sx={{ cursor: "pointer" }}
+      ></InfoIcon>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <div className="w-8/12">
+          <h1>Como utilizar?</h1>
+          <p>
+            Comece adicionando sua refeição e o horário, após isso adicione à
+            refeição o alimento e a quantidade a ser consumida
+          </p>
+        </div>
+      </Popover>
+    </div>
+  );
+}

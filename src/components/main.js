@@ -32,6 +32,8 @@ function Main() {
     toggleTheme,
   } = useAuth();
 
+  console.log(sections.length);
+
   useEffect(() => {
     document.body.style.backgroundColor = `${
       theme == "light" ? "#d3ffd3" : "#1a1a1a"
@@ -128,8 +130,10 @@ function Main() {
     }
   };
 
+  const overflow = sections.length == 1 ? "overflow-y-hidden" : "";
+
   return (
-    <div>
+    <div className={overflow}>
       <FoodInput
         input={input}
         setInput={setInput}
@@ -170,7 +174,7 @@ function Main() {
       ) : (
         <div></div>
       )}
-      {/* <BottomNav></BottomNav> */}
+      <div className="h-8 py-6 my-2"></div>
     </div>
   );
 }

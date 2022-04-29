@@ -83,17 +83,17 @@ const Section = ({
                   <div className="shrink w-7/12">
                     <Progress
                       percent={Math.ceil(((carbSum * 4) / kcalSum) * 100)}
-                      strokeColor="#ff1e00"
+                      strokeColor="#e63946"
                       format={() => text("C")}
                     ></Progress>
                     <Progress
                       percent={Math.ceil(((protSum * 4) / kcalSum) * 100)}
-                      strokeColor="#54e600"
+                      strokeColor="#06d6a0"
                       format={() => text("P")}
                     ></Progress>
                     <Progress
                       percent={Math.ceil(((fatSum * 9) / kcalSum) * 100)}
-                      strokeColor="#ffff4d"
+                      strokeColor="#fca311"
                       format={() => text("G")}
                     ></Progress>
                     <h2 className="text-xl text-stone-100 font-sans font-thin">
@@ -125,100 +125,92 @@ const Section = ({
             </AccordionSummary>
             <AccordionDetails style={{ pointerEvents: "auto" }}>
               <Typography>
-                <div className="bg-[] text-stone-800 bg-white border-2 border-white rounded-t-lg rounded-b-2xl">
+                <div className="bg-[] text-stone-800 ">
                   {section.food.map((item, i) => (
                     <>
-                      <div className="text-stone-800 flex align-center justify-evenly">
-                        <div className="p-2">
+                      <div className="text-stone-800 flex justify-evenly bg-white border-2 border-white rounded-xl mt-2">
+                        <div className="p-2 w-3/12">
                           <h2 className="text-stone-800 text-3xl">{item}</h2>
                           <div>
                             <h3 className="text-2xl">Quantidade</h3>
                             <div className="flex justify-between">
-                              <div className="w-6/12">
+                              <div className="w-6/12 flex justify-between">
                                 {edit === i ? (
-                                  <TextField
-                                    type="number"
-                                    variant="standard"
-                                    value={
-                                      edit === i ? value : section.quantity[i]
-                                    }
-                                    onChange={(e) => setValue(e.target.value)}
-                                  />
+                                  <>
+                                    <TextField
+                                      type="number"
+                                      variant="standard"
+                                      value={
+                                        edit === i ? value : section.quantity[i]
+                                      }
+                                      onChange={(e) => setValue(e.target.value)}
+                                    />
+                                    <Button
+                                      variant="contained"
+                                      onClick={() => saveEdit(i)}
+                                      color="secondary"
+                                    >
+                                      Salvar
+                                    </Button>
+                                  </>
                                 ) : (
-                                  <p className="text-2xl m-0 p-0 py-0">
-                                    {section.quantity[i]}g
-                                  </p>
+                                  <>
+                                    <p className="text-2xl m-0 p-0 py-0">
+                                      {section.quantity[i]}g
+                                    </p>
+                                    <Button
+                                      variant="contained"
+                                      color="secondary"
+                                      onClick={() => {
+                                        setEdit(i);
+                                        setValue(section.quantity[i]);
+                                      }}
+                                    >
+                                      Editar
+                                    </Button>
+                                  </>
                                 )}
                               </div>
-                              <Button
-                                variant="contained"
-                                color="secondary"
-                                onClick={() => {
-                                  setEdit(i);
-                                  setValue(section.quantity[i]);
-                                }}
-                              >
-                                Editar
-                              </Button>
-                              {edit === i ? (
-                                <Button
-                                  variant="contained"
-                                  onClick={() => saveEdit(i)}
-                                >
-                                  Salvar
-                                </Button>
-                              ) : (
-                                <div></div>
-                              )}
                             </div>
                           </div>
                         </div>
-                        <div>
-                          <ul className="flex">
-                            <li key={Math.random()} className="px-2">
-                              <div>
-                                <div className="bg-red-500 text-white font-bold text-2xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl">
-                                  C
-                                </div>
-                                <div className="text-white bg-stone-900 text-center h-8 rounded-b-md">
-                                  {section.carb[i]}
-                                </div>
-                              </div>
-                            </li>
-                            <li key={Math.random()} className="px-2">
-                              <div>
-                                <div className="bg-[#54e600] text-white font-bold text-2xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl">
-                                  P
-                                </div>
-                                <div className="text-white bg-stone-900 text-center h-8 rounded-b-md">
-                                  {section.protein[i]}
-                                </div>
-                              </div>
-                            </li>
-                            <li key={Math.random()} className="px-2">
-                              <div>
-                                <div className="bg-[#ffff4d] text-white font-bold text-2xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl">
-                                  G
-                                </div>
-                                <div className="text-white bg-stone-900 text-center h-8 rounded-b-md">
-                                  {section.fat[i]}
-                                </div>
-                              </div>
-                            </li>
-                            <li key={Math.random()} className="px-2">
-                              <div>
-                                <div className="bg-[#f50057] text-white font-bold text-xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl">
-                                  Kcal
-                                </div>
-                                <div className="text-white bg-stone-900 text-center h-8 rounded-b-md">
-                                  {section.calories[i]}
-                                </div>
-                              </div>
-                            </li>
-                          </ul>
+                        <div className="w-3/12 flex align-center justify-between">
+                          <div className="mt-3">
+                            <div className="bg-[#e63946] text-white font-bold text-2xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl">
+                              C
+                            </div>
+                            <div className="text-white bg-stone-900 text-center h-8 rounded-b-md font-sans">
+                              {section.carb[i]}
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="bg-[#06d6a0] text-white font-bold text-2xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl">
+                              P
+                            </div>
+                            <div className="text-white bg-stone-900 text-center h-8 rounded-b-md font-sans">
+                              {section.protein[i]}
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="bg-[#fca311] text-white font-bold text-2xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl ">
+                              G
+                            </div>
+                            <div className="text-white bg-stone-900 text-center h-8 rounded-b-md font-sans">
+                              {section.fat[i]}
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="bg-[#f50057] text-white font-bold text-xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl">
+                              Kcal
+                            </div>
+                            <div className="text-white bg-stone-900 text-center h-8 rounded-b-md font-sans">
+                              {section.calories[i]}
+                            </div>
+                          </div>
                         </div>
-                        <div>
+                        <div className="w-2/12 text-center">
                           <Button
+                            style={{ marginTop: "12px" }}
                             variant="contained"
                             onClick={() => removeItem(i)}
                             id={i}

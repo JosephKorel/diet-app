@@ -2,12 +2,13 @@ import { Button, TextField } from "@mui/material";
 import React from "react";
 import moment from "moment";
 import "antd/dist/antd.css";
-import { TimePicker } from "antd";
+import { TimePicker, Tooltip } from "antd";
 import locale from "antd/es/date-picker/locale/pt_BR";
 import { useAuth } from "../provider/auth";
 import ReactSwitch from "react-switch";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import NightlightIcon from "@mui/icons-material/Nightlight";
+import InfoIcon from "@mui/icons-material/Info";
 
 const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
   const { time, setTime, theme, toggleTheme } = useAuth();
@@ -61,6 +62,7 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
         <TimePicker
           defaultValue={moment(time, format)}
           format={format}
+          className="time"
           placeholder="Horário"
           onChange={(value, dateString) => {
             setTime(dateString);
@@ -83,6 +85,9 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
             addSection(sectionTitle);
           }}
         ></img>
+        <Tooltip title={"Aaa"} zIndex={1300} placement="right">
+          <InfoIcon></InfoIcon>
+        </Tooltip>
       </div>
     </div>
   );
