@@ -11,6 +11,15 @@ backdrop-filter: blur(4.1px);
     transform: translate(-50%, -50%)
 }
 
+.glass-modal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 600px;
+    transform: translate(-50%, -50%)
+}
+
 
 
  .glassy{
@@ -41,7 +50,7 @@ backdrop-filter: blur(4.1px);
  }
 
  .ant-picker-now-btn:hover{
-     color: #66ff66;
+     color: #f50057;
  }
 
  .ant-picker-ok button{
@@ -56,4 +65,13 @@ backdrop-filter: blur(4.1px);
 
 .ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner{
     background: #ccffcc;
+}
+
+.myprogress  .ant-progress-circle span.ant-progress-text{
+color: white !important;
+font-family: 'Montserrat', sans-serif !important;
+}
+
+.myprogress .ant-progress-status-success .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path{
+    stroke: #b00020 !important;
 }

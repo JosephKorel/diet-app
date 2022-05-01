@@ -44,8 +44,6 @@ export default function BottomNav() {
           onChange={(event, newValue) => {
             setPreValue(value);
             setValue(newValue);
-            console.log(value);
-            console.log(preValue);
           }}
         >
           <BottomNavigationAction

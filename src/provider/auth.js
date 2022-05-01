@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useLocalStorage from "../localStorage/useLocalStorage";
 
 export const AuthContext = React.createContext({});
 
@@ -14,8 +15,8 @@ export const AuthProvider = (props) => {
   const [calories, setCalories] = useState(0);
   const [value, setValue] = useState(0);
   const [edit, setEdit] = useState(-1);
-  const [tmb, setTmb] = useState([0, 0]);
-  const [objective, setObjective] = useState("");
+  const [tmb, setTmb] = useLocalStorage("tmb", [0, 0]);
+  const [objective, setObjective] = useLocalStorage("objective", "");
   const [theme, setTheme] = useState("light");
   const [sections, setSections] = useState([
     {

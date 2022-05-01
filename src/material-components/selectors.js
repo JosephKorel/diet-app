@@ -42,11 +42,14 @@ export function ActSelector({ act, setAct }) {
   return (
     <Box sx={{ width: "220px" }}>
       <FormControl fullWidth>
-        <InputLabel id="activity">Nível de atividade física</InputLabel>
+        <InputLabel id="activity" color="secondary">
+          Nível de atividade física
+        </InputLabel>
         <Select
           value={act}
           label="Nível de atividade física"
           onChange={handleChange}
+          color="secondary"
         >
           <MenuItem value={1.2}>Sedentário</MenuItem>
           <MenuItem value={1.375}>Leve</MenuItem>
@@ -121,23 +124,23 @@ export function ActivityPopover() {
 export function ObjectiveRadio({ setObjective }) {
   return (
     <FormControl>
-      <FormLabel id="demo-radio-buttons-group-label">Objetivo</FormLabel>
+      <FormLabel color="secondary">Objetivo</FormLabel>
       <RadioGroup aria-labelledby="demo-radio-buttons-group-label">
         <FormControlLabel
           value="emagrecimento"
-          control={<Radio />}
+          control={<Radio color="secondary" />}
           label="Emagrecimento"
           onClick={() => setObjective("emagrecimento")}
         />
         <FormControlLabel
           value="hipertrofia"
-          control={<Radio />}
+          control={<Radio color="secondary" />}
           label="Hipertrofia"
           onClick={() => setObjective("hipertrofia")}
         />
         <FormControlLabel
           value="manter"
-          control={<Radio />}
+          control={<Radio color="secondary" />}
           label="Manter peso"
           onClick={() => setObjective("manter")}
         />
@@ -149,21 +152,22 @@ export function ObjectiveRadio({ setObjective }) {
 export function GenderRadio({ tmb, sex, setSex }) {
   return (
     <FormControl>
-      <FormLabel id="demo-radio-buttons-group-label">Sexo</FormLabel>
+      <FormLabel color="secondary">Sexo</FormLabel>
       <RadioGroup
+        row
         aria-labelledby="demo-radio-buttons-group-label"
         name="radio-buttons-group"
         defaultValue={tmb[0] !== 0 ? sex : ""}
       >
         <FormControlLabel
           value="Masculino"
-          control={<Radio />}
+          control={<Radio color="secondary" />}
           label="Masculino"
           onClick={() => setSex("Masculino")}
         />
         <FormControlLabel
           value="Feminino"
-          control={<Radio />}
+          control={<Radio color="secondary" />}
           label="Feminino"
           onClick={() => setSex("Feminino")}
         />

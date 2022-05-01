@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import React from "react";
 import moment from "moment";
 import "antd/dist/antd.css";
-import { TimePicker, Tooltip } from "antd";
+import { TimePicker, Popover } from "antd";
 import locale from "antd/es/date-picker/locale/pt_BR";
 import { useAuth } from "../provider/auth";
 import ReactSwitch from "react-switch";
@@ -35,6 +35,21 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
 
   const format = "HH:mm";
 
+  const helpContent = (
+    <div className="w-9/12 text-lg">
+      <p>
+        Primeiro adicione uma refeição e o horário, após isso adicione os
+        alimentos a serem consumidos nas respectivas refeições
+      </p>
+      <p>
+        Você também pode ver os valores totais bem como sua meta diária de
+        calorias clicando em <span className="font-semibold">Visão geral</span>
+      </p>
+    </div>
+  );
+
+  const helpTitle = <h1 className="text-2xl">Como utilizar</h1>;
+
   return (
     <div className="mt-5 font-sans">
       <div className="ml-10">
@@ -59,23 +74,25 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
           sx={{ width: "250px" }}
           color="secondary"
         />
-        <TimePicker
-          defaultValue={moment(time, format)}
-          format={format}
-          className="time"
-          placeholder="Horário"
-          onChange={(value, dateString) => {
-            setTime(dateString);
-          }}
-          locale={{
-            ...locale,
-            lang: {
-              ...locale.lang,
-              now: "Agora",
-              ok: "Ok",
-            },
-          }}
-        />
+        <div className="myant">
+          <TimePicker
+            defaultValue={moment(time, format)}
+            format={format}
+            className="time"
+            placeholder="Horário"
+            onChange={(value, dateString) => {
+              setTime(dateString);
+            }}
+            locale={{
+              ...locale,
+              lang: {
+                ...locale.lang,
+                now: "Agora",
+                ok: "Ok",
+              },
+            }}
+          />
+        </div>
         <img
           src="add-pink.png"
           alt="Adicionar"
@@ -85,9 +102,14 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
             addSection(sectionTitle);
           }}
         ></img>
-        <Tooltip title={"Aaa"} zIndex={1300} placement="right">
+        <Popover
+          content={helpContent}
+          title={helpTitle}
+          placement="right"
+          style={{ width: "300px", backgroundColor: "black" }}
+        >
           <InfoIcon></InfoIcon>
-        </Tooltip>
+        </Popover>
       </div>
     </div>
   );

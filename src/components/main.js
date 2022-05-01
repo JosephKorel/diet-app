@@ -130,10 +130,8 @@ function Main() {
     }
   };
 
-  const overflow = sections.length == 1 ? "overflow-y-hidden" : "";
-
   return (
-    <div className={overflow}>
+    <div>
       <FoodInput
         input={input}
         setInput={setInput}

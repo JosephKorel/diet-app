@@ -130,9 +130,15 @@ const Section = ({
                     <>
                       <div className="text-stone-800 flex justify-evenly bg-white border-2 border-white rounded-xl mt-2">
                         <div className="p-2 w-3/12">
-                          <h2 className="text-stone-800 text-3xl">{item}</h2>
+                          <h2
+                            className={`text-stone-800 ${
+                              item.length >= 25 ? "text-2xl" : "text-3xl"
+                            } `}
+                          >
+                            {item}
+                          </h2>
                           <div>
-                            <h3 className="text-2xl">Quantidade</h3>
+                            <h3 className="text-2xl italic">Quantidade</h3>
                             <div className="flex justify-between">
                               <div className="w-6/12 flex justify-between">
                                 {edit === i ? (
@@ -155,7 +161,7 @@ const Section = ({
                                   </>
                                 ) : (
                                   <>
-                                    <p className="text-2xl m-0 p-0 py-0">
+                                    <p className="text-2xl m-0 p-0 py-0 font-sans font-medium italic">
                                       {section.quantity[i]}g
                                     </p>
                                     <Button
@@ -208,15 +214,21 @@ const Section = ({
                             </div>
                           </div>
                         </div>
-                        <div className="w-2/12 text-center">
-                          <Button
+                        <div className="w-36">
+                          {/* <Button
                             style={{ marginTop: "12px" }}
                             variant="contained"
                             onClick={() => removeItem(i)}
                             id={i}
                           >
                             Remover
-                          </Button>
+                          </Button> */}
+                          <img
+                            src="./minus.png"
+                            alt="Excluir"
+                            className="mt-3 w-10 hover:scale-105 duration-100 cursor-pointer ml-[70%]"
+                            onClick={() => removeItem(i)}
+                          ></img>
                         </div>
                       </div>
                     </>
