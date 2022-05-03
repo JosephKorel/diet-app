@@ -45,17 +45,18 @@ const Section = ({
   const event =
     open === true ? { pointerEvents: "none" } : { pointerEvents: "auto" };
 
+  console.log(open);
+
   return (
     <div>
       {section.title !== "" ? (
         <div className="mt-10 w-9/12 m-auto">
           <Accordion
+            /* disabled={open === true ? true : false} */
             style={{
               borderRadius: "18px",
-              pointerEvents: "none",
+              /* pointerEvents: "none" */
               backgroundColor: "#1a1a1a",
-              /*  borderBottom: "4px solid black",
-              border: "1px solid black", */
             }}
           >
             <AccordionSummary
@@ -104,7 +105,7 @@ const Section = ({
                     <Button
                       variant="contained"
                       onClick={() => removeSection()}
-                      sx={{ pointerEvents: "auto" }}
+                      sx={{ pointerEvents: "auto", width: "185px" }}
                     >
                       Remover Refeição
                     </Button>
@@ -145,6 +146,8 @@ const Section = ({
                                   <>
                                     <TextField
                                       type="number"
+                                      size="medium"
+                                      color="secondary"
                                       variant="standard"
                                       value={
                                         edit === i ? value : section.quantity[i]
@@ -210,19 +213,11 @@ const Section = ({
                               Kcal
                             </div>
                             <div className="text-white bg-stone-900 text-center h-8 rounded-b-md font-sans">
-                              {section.calories[i]}
+                              {section.calories[i].toFixed(1)}
                             </div>
                           </div>
                         </div>
                         <div className="w-36">
-                          {/* <Button
-                            style={{ marginTop: "12px" }}
-                            variant="contained"
-                            onClick={() => removeItem(i)}
-                            id={i}
-                          >
-                            Remover
-                          </Button> */}
                           <img
                             src="./minus.png"
                             alt="Excluir"

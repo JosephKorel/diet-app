@@ -66,12 +66,16 @@ const BasicModal = ({
     }
   };
 
+  const onModalClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div>
+    <div onClick={onModalClick}>
       <Button
         onClick={handleOpen}
         variant="contained"
-        style={{ marginTop: "10px", pointerEvents: "auto" }}
+        style={{ marginTop: "10px", pointerEvents: "auto", width: "185px" }}
       >
         Adicionar alimento
       </Button>

@@ -14,9 +14,18 @@ export default function BottomNav() {
   const [preValue, setPreValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
 
+  const styles = {
+    root: {
+      color: "green",
+    },
+    selected: {
+      color: "red",
+    },
+  };
+
   let navigate = useNavigate();
   return (
-    <Box sx={{ width: 500 }}>
+    <div className="w-full bottom-0 fixed mb-5 ">
       {open === true ? (
         <OverviewModal
           setOpen={setOpen}
@@ -27,19 +36,21 @@ export default function BottomNav() {
       ) : (
         <div></div>
       )}
-      <Paper
-        sx={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          width: "70%",
-          margin: "auto",
-        }}
-        elevation={3}
-      >
+      <div className="2xl:w-2/3 text-center m-auto bg-[#1a1a1a] border-2 border-white rounded-full bottomnav">
         <BottomNavigation
           showLabels
+          sx={{
+            width: "full",
+            margin: "auto",
+            backgroundColor: "#1a1a1a",
+            borderRadius: "100%",
+            "& .MuiBottomNavigationAction-root": {
+              color: "white",
+            },
+            "& .Mui-selected, .Mui-selected > svg": {
+              color: "#f50057",
+            },
+          }}
           value={value}
           onChange={(event, newValue) => {
             setPreValue(value);
@@ -62,7 +73,7 @@ export default function BottomNav() {
             onClick={() => navigate("/search")}
           />
         </BottomNavigation>
-      </Paper>
-    </Box>
+      </div>
+    </div>
   );
 }

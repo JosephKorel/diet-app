@@ -133,7 +133,7 @@ export default function DataDrawer({ setUserWeight }) {
           <Button
             onClick={toggleDrawer(anchor, true)}
             variant="contained"
-            color="primary"
+            color="secondary"
           >
             {tmb[0] !== 0 ? "Editar" : "Adicionar Informações"}
           </Button>
@@ -144,7 +144,7 @@ export default function DataDrawer({ setUserWeight }) {
               content="Adicione informações pessoais para obter detalhes personalizados"
               zIndex={1300}
             >
-              <HelpIcon color="primary" fontSize="large" />
+              <HelpIcon color="secondary" fontSize="large" />
             </Popover>
           )}
 

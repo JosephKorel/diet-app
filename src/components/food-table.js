@@ -1,4 +1,5 @@
 import React from "react";
+import FoodFact from "./food-facts";
 
 export const FoodTable = ({ food }) => {
   const item = food[0];
@@ -9,6 +10,8 @@ export const FoodTable = ({ food }) => {
   let iron = 0;
   let magnesium = 0;
   let potassium = 0;
+  let calcium = 0;
+  let zinc = 0;
   let sodium = 0;
   let satFat = 0;
   let monoFat = 0;
@@ -39,6 +42,12 @@ export const FoodTable = ({ food }) => {
       : (potassium = "NA");
     nutrients.sodium ? (sodium = nutrients.sodium.qty) : (sodium = "NA");
 
+    nutrients.calcium ? (calcium = nutrients.calcium.qty) : (calcium = "NA");
+
+    nutrients.zinc ? (zinc = nutrients.zinc.qty) : (zinc = "NA");
+
+    nutrients.sodium ? (sodium = nutrients.sodium.qty) : (sodium = "NA");
+
     if (fatAcids) {
       fatAcids.saturated ? (satFat = fatAcids.saturated.qty) : (satFat = "");
       fatAcids.monounsaturated
@@ -52,84 +61,135 @@ export const FoodTable = ({ food }) => {
   }
 
   return (
-    <div>
-      {food[0] ? (
-        <div>
-          <h1>{item.description}</h1>
-          <h2>Valores referentes à porção de 100 gramas</h2>
-          <ul>
-            <li>
-              <h3>
-                Carboidratos{" "}
-                <span>{carb === "NA" ? "NA" : carb.toFixed(2) + "g"}</span>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                Proteínas <span>{protein}g</span>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                Gorduras totais <span>{fat}g</span>
-              </h3>
+    <div className="flex align-center justify-evenly">
+      <div>
+        {food[0] ? (
+          <div className="text-stone-800">
+            <h1 className="text-4xl ">{item.description}</h1>
+            <h2 className="text-2xl italic">
+              Valores referentes à porção de 100 gramas
+            </h2>
+            <table className="w-full table-auto text-lg font-sans foodtable">
+              <tr>
+                <td>Carboidratos</td>
+                <td>
+                  <span>{carb === "NA" ? "NA" : carb.toFixed(2)}</span>
+                </td>
+                <td>g</td>
+              </tr>
+              <tr>
+                <td>Proteínas</td>
+                <td>
+                  <span>{protein}</span>
+                </td>
+                <td>g</td>
+              </tr>
+              <tr>
+                <td>Gorduras totais</td>
+                <td>
+                  <span>{fat}</span>
+                </td>
+                <td>g</td>
+              </tr>
               {food[0].attributes.fatty_acids ? (
-                <ul>
-                  <li>
-                    <h4>
-                      Gorduras saturadas <span>{satFat.toFixed(2)}g</span>
-                    </h4>
-                    <h4>
-                      Gorduras monossaturadas <span>{monoFat.toFixed(2)}g</span>
-                    </h4>
-                    <h4>
-                      Gorduras polissaturadas <span>{polyFat.toFixed(2)}g</span>
-                    </h4>
-                  </li>
-                </ul>
+                <>
+                  <tr>
+                    <td>Gorduras saturadas</td>
+                    <td>
+                      <span>{satFat.toFixed(2)}</span>
+                    </td>
+                    <td>g</td>
+                  </tr>
+                  <tr>
+                    <td>Gorduras monoinsaturadas</td>
+                    <td>
+                      <span>{monoFat.toFixed(2)}</span>
+                    </td>
+                    <td>g</td>
+                  </tr>
+                  <tr>
+                    <td>Gorduras poliinsaturadas</td>
+                    <td>
+                      <span>{polyFat.toFixed(2)}</span>
+                    </td>
+                    <td>g</td>
+                  </tr>
+                </>
               ) : (
                 <div></div>
               )}
-            </li>
-            <li>
-              <h3>
-                Fibras{" "}
-                <span>{fiber === "NA" ? "NA" : fiber.toFixed(2) + "g"}</span>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                Ferro{" "}
-                <span>{iron === "NA" ? "NA" : iron.toFixed(2) + "mg"}</span>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                Magnésio{" "}
-                <span>
-                  {magnesium === "NA" ? "NA" : magnesium.toFixed(2) + "mg"}
-                </span>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                Potássio{" "}
-                <span>
-                  {potassium === "NA" ? "NA" : potassium.toFixed(2) + "mg"}
-                </span>
-              </h3>
-            </li>
-            <li>
-              <h3>
-                Sódio{" "}
-                <span>{sodium === "NA" ? "NA" : sodium.toFixed(2) + "mg"}</span>
-              </h3>
-            </li>
-          </ul>
-        </div>
-      ) : (
-        <div></div>
-      )}
+              <tr>
+                <td>Fibras</td>
+                <td>
+                  <span>{fiber === "NA" ? "NA" : fiber.toFixed(2)}</span>
+                </td>
+                <td>g</td>
+              </tr>
+              <tr>
+                <td>Ferro</td>
+                <td>
+                  <span>{iron === "Tr" ? "Tr" : iron.toFixed(2)}</span>
+                </td>
+                <td>mg</td>
+              </tr>
+              <tr>
+                <td>Magnésio</td>
+                <td>
+                  <span>
+                    {magnesium === "Tr" ? "Tr" : magnesium.toFixed(2)}
+                  </span>
+                </td>
+                <td>mg</td>
+              </tr>
+              <tr>
+                <td>Potássio</td>
+                <td>
+                  <span>
+                    {potassium === "Tr" ? "Tr" : potassium.toFixed(2)}
+                  </span>
+                </td>
+                <td>mg</td>
+              </tr>
+              <tr>
+                <td>Cálcio</td>
+                <td>
+                  <span>{calcium === "Tr" ? "Tr" : calcium.toFixed(2)}</span>
+                </td>
+                <td>mg</td>
+              </tr>
+              <tr>
+                <td>Zinco</td>
+                <td>
+                  <span>{zinc === "Tr" ? "Tr" : zinc.toFixed(2)}</span>
+                </td>
+                <td>mg</td>
+              </tr>
+              <tr>
+                <td>Sódio</td>
+                <td>
+                  <span>
+                    {sodium === "Tr" ? "Tr" : sodium.toFixed(2) + "mg"}
+                  </span>
+                </td>
+                <td>mg</td>
+              </tr>
+            </table>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+      <FoodFact
+        carb={carb}
+        protein={protein}
+        fat={fat}
+        iron={iron}
+        sodium={sodium}
+        magnesium={magnesium}
+        calcium={calcium}
+        zinc={zinc}
+        potassium={potassium}
+      />
     </div>
   );
 };

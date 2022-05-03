@@ -4,16 +4,17 @@
     left: 50%;
     width: 800px;
     height: 600px;
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(4.1px);
--webkit-backdrop-filter: blur(4.1px);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.1px);
+    -webkit-backdrop-filter: blur(4.1px);
     transform: translate(-50%, -50%)
+    
 }
 
 .glass-modal{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     width: 800px;
     height: 600px;
@@ -51,6 +52,7 @@ backdrop-filter: blur(4.1px);
 
  .ant-picker-now-btn:hover{
      color: #f50057;
+
  }
 
  .ant-picker-ok button{
@@ -74,4 +76,17 @@ font-family: 'Montserrat', sans-serif !important;
 
 .myprogress .ant-progress-status-success .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path{
     stroke: #b00020 !important;
+}
+
+.foodtable td{
+    font-weight: bold;
+}
+
+.foodtable td>span{
+    font-weight: 400;
+}
+
+.foodtable > tr>td:nth-child(3){
+    font-weight: 500;
+  
 }

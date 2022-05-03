@@ -63,7 +63,7 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
       <h1 className="text-7xl text-center">
         <span className="text-9xl text-secondary">M</span>acro tracker
       </h1>
-      <div className="w-8/12 m-auto flex align-center justify-between bg-white p-5 rounded-3xl">
+      <div className="w-6/12 m-auto flex align-center justify-between bg-white p-5 rounded-3xl">
         <TextField
           className="flex-0.5"
           id="refName"
@@ -74,12 +74,13 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
           sx={{ width: "250px" }}
           color="secondary"
         />
-        <div className="myant">
+        <div className="myant flex flex-col align-center justify-center">
           <TimePicker
             defaultValue={moment(time, format)}
             format={format}
             className="time"
             placeholder="Horário"
+            size="large"
             onChange={(value, dateString) => {
               setTime(dateString);
             }}

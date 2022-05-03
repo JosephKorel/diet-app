@@ -31,18 +31,24 @@ const FoodSearch = () => {
     }
   };
   return (
-    <div>
-      <Autocomplete
-        disablePortal
-        freeSolo={true}
-        value={input}
-        onInputChange={handleChange}
-        id="combo-box-demo"
-        options={input.length >= 3 ? entries[0] : values}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Alimento" />}
-      />
-      <FoodTable food={food}></FoodTable>
+    <div className="w-9/12 p-5 m-auto bg-white mt-10 rounded-2xl">
+      <div className="w-full flex align-center justify-center">
+        <Autocomplete
+          disablePortal
+          freeSolo={true}
+          value={input}
+          onInputChange={handleChange}
+          id="combo-box-demo"
+          options={input.length >= 3 ? entries[0] : values}
+          sx={{ width: 300 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Alimento" color="secondary" />
+          )}
+        />
+      </div>
+      <div className="mt-5">
+        <FoodTable food={food}></FoodTable>
+      </div>
     </div>
   );
 };

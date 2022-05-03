@@ -110,8 +110,8 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
     if (objective === "manter") target += tmb[1];
     return (
       <div className="myprogress">
-        <div className="text-center">
-          <h1 className="text-4xl font-sans font-semibold text-white">
+        <div className=" m-auto w-11/12 text-center p-1 bg-white border-4 border-stone-800 rounded-[64px] mt-8">
+          <h1 className="text-4xl font-sans font-semibold text-stone-800 mt-6">
             Meta diária:{" "}
             <span className="font-light italic">
               {target} <span className="text-2xl">KCAL</span>
@@ -120,16 +120,18 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
           </h1>
           <Progress
             type="circle"
-            percent={Math.ceil((totalKcal / tmb[1]) * 100)}
+            percent={Math.ceil((totalKcal / target) * 100)}
             format={() => kcalValue()}
             width={150}
             color="#00e5ff"
+            strokeWidth={10}
+            trailColor="#00e5ff26"
           />
-          <p className="text-white font-semibold text-2xl mt-4 font-sans">
-            {totalKcal > tmb[1] ? (
+          <p className="text-stone-800 font-normal p-0 text-2xl mt-2 font-sans">
+            {totalKcal > target ? (
               <>
                 Ultrapassou em{" "}
-                <span className="font-light italic">
+                <span className="font-bold italic">
                   {(totalKcal - target).toFixed(2)}
                 </span>{" "}
                 calorias
@@ -137,7 +139,7 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
             ) : (
               <>
                 Faltam{" "}
-                <span className="font-light italic">
+                <span className="font-bold italic">
                   {(target - totalKcal).toFixed(2)}
                 </span>{" "}
                 calorias
@@ -145,66 +147,87 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
             )}
           </p>
         </div>
-        <div className="flex flex-col ">
-          <h1 className="text-white font-sans font-semibold text-3xl">
+        <div className="flex flex-col mt-10">
+          <h1 className="m-auto text-center text-white font-normal font-sans text-2xl p-2 pt-3 bg-stone-800 rounded-t-full w-8/12">
             Quantidades por quilograma
           </h1>
-          <div className="flex align-center justify-between">
+          <div className="flex align-center justify-around p-5 bg-white border-4 border-stone-800 rounded-[48px] text-black rounded-br-none">
             <div className="text-center">
-              <h3 className="text-xl text-white font-sans font-light">
+              <h3 className="text-xl text-black font-sans font-normal">
                 Carboidratos
               </h3>
               <Progress
-                percent={Math.ceil(carbKcal)}
+                percent={(100 * totalCarb) / (weight * 4)}
                 strokeColor="#e63946"
                 type="circle"
                 format={() => macroQty(totalCarb)}
+                strokeWidth={8}
+                trailColor="#e6394726"
+                status="normal"
               />
             </div>
             <div className="text-center">
-              <h3 className="text-xl text-white font-sans font-light">
+              <h3 className="text-xl text-black font-sans font-normal">
                 Proteínas
               </h3>
               <Progress
-                percent={Math.ceil(protKcal)}
+                percent={(100 * totalProt) / (weight * 2)}
                 strokeColor="#06d6a0"
                 type="circle"
                 format={() => macroQty(totalProt)}
+                strokeWidth={8}
+                trailColor="#06d6a026"
+                status="normal"
               />
             </div>
             <div className="text-center">
-              <h3 className="text-xl text-white font-sans font-light">
+              <h3 className="text-xl text-black font-sans font-normal">
                 Gorduras
               </h3>
               <Progress
-                percent={Math.ceil(fatKcal)}
+                percent={(100 * totalFat) / weight}
                 strokeColor="#fca311"
                 type="circle"
                 format={() => macroQty(totalFat)}
+                strokeWidth={8}
+                trailColor="#fca31126"
+                status="normal"
               />
             </div>
           </div>
-          <div className="flex align-center mt-3 text-white">
-            <p className="text-white mr-1">Valores recomendados</p>
-            <Popover content={recomendedValues} zIndex={1300} placement="right">
-              <InfoIcon></InfoIcon>
-            </Popover>
+          <div className="flex flex-row-reverse align-center text-white">
+            <p className="flex text-white px-8 pt-2 pb-3 bg-stone-800 rounded-b-full">
+              Valores recomendados
+              {
+                <div className="ml-3">
+                  <Popover
+                    content={recomendedValues}
+                    zIndex={1300}
+                    placement="right"
+                    style={{ marginLeft: "4px" }}
+                  >
+                    <InfoIcon></InfoIcon>
+                  </Popover>
+                </div>
+              }
+            </p>
           </div>
         </div>
       </div>
     );
   };
+
   function kcalValue() {
     return (
-      <p className="font-sans italic font-light text-lg mt-4">
-        {totalKcal}Kcal
+      <p className="font-sans text-black italic font-normal text-lg mt-4">
+        {totalKcal.toFixed(1)}Kcal
       </p>
     );
   }
 
   function macroQty(macro) {
     return (
-      <p className="font-sans italic font-light text-lg mt-4">
+      <p className="font-sans italic text-black font-normal text-lg mt-4">
         {(macro / weight).toFixed(2)}g/kg
       </p>
     );
@@ -227,18 +250,21 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
             type="circle"
             strokeColor="#e63946"
             width={150}
+            strokeWidth={10}
           />
           <Progress
             percent={Math.ceil(protKcal)}
             type="circle"
             strokeColor="#06d6a0"
             width={150}
+            strokeWidth={10}
           />
           <Progress
             percent={Math.ceil(fatKcal)}
             type="circle"
             strokeColor="#fca311"
             width={150}
+            strokeWidth={10}
           />
         </div>
       </div>
@@ -253,12 +279,12 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         sx={{
-          backdropFilter: "blur(4px)",
+          backdropFilter: "blur(8px)",
         }}
       >
         <div className="glass-modal">
-          <h1 className="m-auto text-center font-bold text-stone-800 text-3xl p-2 bg-white rounded-3xl w-4/12 ">
-            Visão geral
+          <h1 className="m-auto text-center font-sans font-bold text-white text-5xl bg-secondary rounded-full p-2 py-4  w-7/12 ">
+            VISÃO GERAL
           </h1>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {tmb[0] !== 0 ? (
