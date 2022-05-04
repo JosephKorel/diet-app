@@ -75,9 +75,28 @@ const BasicModal = ({
       <Button
         onClick={handleOpen}
         variant="contained"
-        style={{ marginTop: "10px", pointerEvents: "auto", width: "185px" }}
+        style={{
+          marginTop: "10px",
+          pointerEvents: "auto",
+        }}
+        sx={{
+          width: {
+            xs: "80px",
+            sm: "150px",
+            md: "185px",
+            lg: "185px",
+          },
+          fontSize: {
+            xs: "12px",
+            lg: "14px",
+          },
+          padding: {
+            xs: "2px",
+            sm: "8px",
+          },
+        }}
       >
-        Adicionar alimento
+        {window.innerWidth < 600 ? "Adicionar" : "Adicionar alimento"}
       </Button>
       <Modal
         open={open}

@@ -170,9 +170,7 @@ export const FoodTable = ({ food }) => {
               <tr>
                 <td>Sódio</td>
                 <td>
-                  <span>
-                    {sodium === "Tr" ? "Tr" : sodium.toFixed(2) + "mg"}
-                  </span>
+                  <span>{sodium === "Tr" ? "Tr" : sodium.toFixed(2)}</span>
                 </td>
                 <td>mg</td>
               </tr>

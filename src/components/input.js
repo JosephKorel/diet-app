@@ -51,8 +51,8 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
   const helpTitle = <h1 className="text-2xl">Como utilizar</h1>;
 
   return (
-    <div className="mt-5 font-sans">
-      <div className="ml-10">
+    <div className="md:mt-5 sm:mt-2 font-sans">
+      <div className="md:ml-10 sm:ml-2">
         <ReactSwitch
           onChange={toggleTheme}
           onColor="#f6f9f7"
@@ -62,18 +62,20 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
           uncheckedIcon={<NightlightIcon></NightlightIcon>}
         ></ReactSwitch>
       </div>
-      <h1 className="text-7xl text-center">
-        <span className="text-9xl text-secondary">M</span>acro tracker
+      <h1 className="lg:text-7xl md:text-6xl sm:text-5xl w-full text-center text-stone-900 dark:text-stone-100  ">
+        <span className="lg:text-9xl md:text-7xl sm:text-7xl text-secondary">
+          M
+        </span>
+        acro tracker
       </h1>
-      <div className="w-6/12 m-auto flex align-center justify-between bg-white p-5 rounded-3xl">
+      <div className="lg:w-6/12 md:w-4/6 sm:w-[95%] m-auto flex align-center justify-between bg-white p-5 rounded-3xl">
         <TextField
-          className="flex-0.5"
           id="refName"
           label="Refeição"
           variant="standard"
           value={sectionTitle}
           onChange={(e) => setSectionTitle(e.target.value)}
-          sx={{ width: "250px" }}
+          sx={{ width: { xs: "150px", md: "250px" } }}
           color="secondary"
         />
         <div className="myant flex flex-col align-center justify-center">

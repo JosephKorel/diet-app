@@ -9,6 +9,7 @@ function Main() {
   const [input, setInput] = useState("");
   const [sectionTitle, setSectionTitle] = useState("");
   const [food, setFood] = useState([]);
+  const [width, setWidth] = useState(window.innerWidth);
 
   const {
     qnty,
@@ -32,13 +33,26 @@ function Main() {
     toggleTheme,
   } = useAuth();
 
-  console.log(sections.length);
-
   useEffect(() => {
     document.body.style.backgroundColor = `${
       theme == "light" ? "#d3ffd3" : "#1a1a1a"
     }`;
+
+    const html = document.getElementById("html");
+    html.classList.toggle("dark");
   }, [theme]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const userFood = foodData.filter((item) => item.description === foodInput);

@@ -11,11 +11,13 @@ import { useNavigate } from "react-router-dom";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import SearchIcon from "@mui/icons-material/Search";
+import { useAuth } from "../provider/auth";
 
 export default function BottomNav() {
   const [value, setValue] = React.useState(0);
   const [preValue, setPreValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
+  const { theme } = useAuth();
 
   const styles = {
     root: {
@@ -28,7 +30,7 @@ export default function BottomNav() {
 
   let navigate = useNavigate();
   return (
-    <div className="w-full bottom-0 fixed mb-5 ">
+    <div className="w-full bottom-0 fixed lg:mb-5 md:mb-0">
       {open === true ? (
         <OverviewModal
           setOpen={setOpen}
@@ -39,16 +41,16 @@ export default function BottomNav() {
       ) : (
         <div></div>
       )}
-      <div className="2xl:w-2/3 text-center m-auto bg-[#1a1a1a] border-2 border-white rounded-full bottomnav">
+      <div className="lg:w-2/3 md:w-full text-center m-auto bg-dark dark:bg-slate-100 lg:rounded-full md:rounded-none  border-2 border-white dark:border-stone-900">
         <BottomNavigation
           showLabels
           sx={{
             width: "full",
             margin: "auto",
-            backgroundColor: "#1a1a1a",
+            backgroundColor: `${theme == "light" ? "#1a1a1a" : "#f6f9f7"}`,
             borderRadius: "100%",
             "& .MuiBottomNavigationAction-root": {
-              color: "white",
+              color: `${theme == "light" ? "white" : "#1a1a1a"}`,
             },
             "& .Mui-selected, .Mui-selected > svg": {
               color: "#f50057",
