@@ -55,6 +55,8 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
       <div className="ml-10">
         <ReactSwitch
           onChange={toggleTheme}
+          onColor="#f6f9f7"
+          onHandleColor="ffd12b"
           checked={theme === "dark"}
           checkedIcon={<LightModeIcon></LightModeIcon>}
           uncheckedIcon={<NightlightIcon></NightlightIcon>}

@@ -80,6 +80,9 @@ font-family: 'Montserrat', sans-serif !important;
 
 .foodtable td{
     font-weight: bold;
+    padding:4px;
+    padding-left:8px;
+    padding-right:8px;
 }
 
 .foodtable td>span{

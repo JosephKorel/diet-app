@@ -8,6 +8,9 @@ import Paper from "@mui/material/Paper";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import OverviewModal from "./overview-modal";
 import { useNavigate } from "react-router-dom";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function BottomNav() {
   const [value, setValue] = React.useState(0);
@@ -59,17 +62,17 @@ export default function BottomNav() {
         >
           <BottomNavigationAction
             label="Dieta"
-            icon={<RestoreIcon />}
+            icon={<ListAltIcon />}
             onClick={() => navigate("/")}
           />
           <BottomNavigationAction
             label="Visão geral"
-            icon={<FavoriteIcon />}
+            icon={<AnalyticsIcon />}
             onClick={() => setOpen(true)}
           />
           <BottomNavigationAction
             label="Consultar"
-            icon={<LocationOnIcon />}
+            icon={<SearchIcon />}
             onClick={() => navigate("/search")}
           />
         </BottomNavigation>

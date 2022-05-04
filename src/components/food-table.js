@@ -50,6 +50,7 @@ export const FoodTable = ({ food }) => {
 
     if (fatAcids) {
       fatAcids.saturated ? (satFat = fatAcids.saturated.qty) : (satFat = "");
+
       fatAcids.monounsaturated
         ? (monoFat = fatAcids.monounsaturated.qty)
         : (monoFat = "");
@@ -61,15 +62,17 @@ export const FoodTable = ({ food }) => {
   }
 
   return (
-    <div className="flex align-center justify-evenly">
-      <div>
+    <div className="flex align-center justify-evenly ">
+      <div className="w-1/2">
         {food[0] ? (
-          <div className="text-stone-800">
-            <h1 className="text-4xl ">{item.description}</h1>
-            <h2 className="text-2xl italic">
+          <div className="text-stone-800 bg-[#fdfffc] rounded-xl">
+            <h1 className="text-4xl p-2 rounded-t-xl bg-secondary text-white w-full">
+              {item.description}
+            </h1>
+            <h2 className="text-2xl italic px-2">
               Valores referentes à porção de 100 gramas
             </h2>
-            <table className="w-full table-auto text-lg font-sans foodtable">
+            <table className="w-full table-auto text-lg font-sans foodtable ">
               <tr>
                 <td>Carboidratos</td>
                 <td>
@@ -96,21 +99,21 @@ export const FoodTable = ({ food }) => {
                   <tr>
                     <td>Gorduras saturadas</td>
                     <td>
-                      <span>{satFat.toFixed(2)}</span>
+                      <span>{satFat == "Tr" ? "Tr" : satFat.toFixed(2)}</span>
                     </td>
                     <td>g</td>
                   </tr>
                   <tr>
                     <td>Gorduras monoinsaturadas</td>
                     <td>
-                      <span>{monoFat.toFixed(2)}</span>
+                      <span>{monoFat == "Tr" ? "Tr" : monoFat.toFixed(2)}</span>
                     </td>
                     <td>g</td>
                   </tr>
                   <tr>
                     <td>Gorduras poliinsaturadas</td>
                     <td>
-                      <span>{polyFat.toFixed(2)}</span>
+                      <span>{polyFat == "Tr" ? "Tr" : polyFat.toFixed(2)}</span>
                     </td>
                     <td>g</td>
                   </tr>
@@ -179,17 +182,21 @@ export const FoodTable = ({ food }) => {
           <div></div>
         )}
       </div>
-      <FoodFact
-        carb={carb}
-        protein={protein}
-        fat={fat}
-        iron={iron}
-        sodium={sodium}
-        magnesium={magnesium}
-        calcium={calcium}
-        zinc={zinc}
-        potassium={potassium}
-      />
+      {food[0] ? (
+        <FoodFact
+          carb={carb}
+          protein={protein}
+          fat={fat}
+          iron={iron}
+          sodium={sodium}
+          magnesium={magnesium}
+          calcium={calcium}
+          zinc={zinc}
+          potassium={potassium}
+        />
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
