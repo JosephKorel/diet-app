@@ -17,7 +17,7 @@ export const AuthProvider = (props) => {
   const [edit, setEdit] = useState(-1);
   const [tmb, setTmb] = useLocalStorage("tmb", [0, 0]);
   const [objective, setObjective] = useLocalStorage("objective", "");
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useLocalStorage("theme", "light");
   const [sections, setSections] = useLocalStorage("sections", [
     {
       id: Math.random(),

@@ -145,24 +145,24 @@ const FoodFact = ({
   ];
 
   return (
-    <div className="w-1/3 ">
+    <div className="w-full mt-2 mb-16">
       <Paper elevation={12}>
-        <div className="w-full p-5">
-          <h1 className="text-2xl font-sans font-normal text-stone-800">
+        <div className="w-full p-3">
+          <h1 className="text-lg font-sans font-normal text-stone-800">
             Macronutriente mais abundante:
           </h1>
-          <p className="text-3xl font-sans font-bold leading-3">
+          <p className="text-xl font-sans font-bold leading-3">
             {macro[macroIndex]}
           </p>
           <p className="text-base text-justify">{macroFacts[macroIndex]}</p>
         </div>
       </Paper>
       <Paper elevation={12}>
-        <div className="w-full p-5 mt-5">
-          <h1 className="text-2xl font-sans font-normal text-stone-800">
+        <div className="w-full p-5 mt-2">
+          <h1 className="text-lg font-sans font-normal text-stone-800">
             Mineral mais abundante:{" "}
           </h1>
-          <p className="text-3xl font-sans font-bold leading-3">
+          <p className="text-xl font-sans font-bold leading-3">
             {mineral[mineralIndex]}
           </p>
           <p className="text-base text-justify">{mineralFacts[mineralIndex]}</p>

@@ -39,7 +39,10 @@ function Main() {
     }`;
 
     const html = document.getElementById("html");
-    html.classList.toggle("dark");
+
+    theme == "dark"
+      ? html.classList.add("dark")
+      : html.classList.remove("dark");
   }, [theme]);
 
   useEffect(() => {

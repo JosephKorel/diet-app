@@ -65,53 +65,114 @@ export default function DataDrawer({ setUserWeight }) {
     }
   };
 
+  function MobileData() {
+    return (
+      <div>
+        <div>
+          <GenderRadio sex={sex} setSex={setSex} tmb={tmb}></GenderRadio>
+        </div>
+        <div className="text-center md:flex md:justify-between">
+          <div className="md:w-[30%]">
+            <TextField
+              color="secondary"
+              type="number"
+              label="Idade"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+              sx={{ marginBottom: "4px" }}
+            ></TextField>
+          </div>
+          <div className="md:w-[30%]">
+            <TextField
+              color="secondary"
+              type="number"
+              label="Peso(kg)"
+              value={weight}
+              onChange={(e) => {
+                setWeight(e.target.value);
+              }}
+              sx={{ marginBottom: "4px" }}
+            ></TextField>
+          </div>
+          <div className="md:w-[30%]">
+            <TextField
+              color="secondary"
+              type="number"
+              label="Altura (cm)"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+              onClick={(e) => console.log(e.target.value)}
+              sx={{ marginBottom: "4px" }}
+            ></TextField>
+          </div>
+        </div>
+        <div className="flex my-3">
+          <ActSelector act={act} setAct={setAct}></ActSelector>
+          <ActivityPopover></ActivityPopover>
+        </div>
+        <div>
+          <ObjectiveRadio
+            objective={objective}
+            setObjective={setObjective}
+          ></ObjectiveRadio>
+        </div>
+      </div>
+    );
+  }
+
   const list = (anchor) => (
     <Box
       sx={{
         width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
       }}
       role="presentation"
-      /* onClick={toggleDrawer(anchor, false)} */
     >
-      <div className="w-8/12 m-auto">
+      <div className="w-full m-auto">
         <div className="p-3 flex align-center justify-evenly">
-          <GenderRadio sex={sex} setSex={setSex} tmb={tmb}></GenderRadio>
-          <TextField
-            color="secondary"
-            type="number"
-            label="Idade"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          ></TextField>
-          <TextField
-            color="secondary"
-            type="number"
-            label="Peso(kg)"
-            value={weight}
-            onChange={(e) => {
-              setWeight(e.target.value);
-            }}
-          ></TextField>
-          <TextField
-            color="secondary"
-            type="number"
-            label="Altura (cm)"
-            value={height}
-            onChange={(e) => setHeight(e.target.value)}
-            onClick={(e) => console.log(e.target.value)}
-          ></TextField>
+          {window.innerWidth < 650 ? (
+            <MobileData></MobileData>
+          ) : (
+            <>
+              <GenderRadio sex={sex} setSex={setSex} tmb={tmb}></GenderRadio>
+              <TextField
+                color="secondary"
+                type="number"
+                label="Idade"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              ></TextField>
+              <TextField
+                color="secondary"
+                type="number"
+                label="Peso(kg)"
+                value={weight}
+                onChange={(e) => {
+                  setWeight(e.target.value);
+                }}
+              ></TextField>
+              <TextField
+                color="secondary"
+                type="number"
+                label="Altura (cm)"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                onClick={(e) => console.log(e.target.value)}
+              ></TextField>
+              <div className="w-6/12 flex align-center justify-evenly mt-5 ml-3 mb-16">
+                <div className="flex align-center justify-center ">
+                  <ActSelector act={act} setAct={setAct}></ActSelector>
+                  <ActivityPopover></ActivityPopover>
+                </div>
+                <ObjectiveRadio
+                  objective={objective}
+                  setObjective={setObjective}
+                ></ObjectiveRadio>
+              </div>
+            </>
+          )}
         </div>
-        <div className="w-6/12 flex align-center justify-evenly mt-5 ml-3 mb-16">
-          <div className="flex align-center justify-center ">
-            <ActSelector act={act} setAct={setAct}></ActSelector>
-            <ActivityPopover></ActivityPopover>
-          </div>
-          <ObjectiveRadio
-            objective={objective}
-            setObjective={setObjective}
-          ></ObjectiveRadio>
-        </div>
-        <div className="p-5 ml-[5%]">
+
+        <div className="p-2 ">
           <Button
             onClick={() => {
               tmbCalc(anchor);

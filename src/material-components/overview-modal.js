@@ -1,24 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import Box from "@mui/material/Box";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useAuth } from "../provider/auth";
 import DataDrawer from "./drawer";
-import { Progress, Tooltip, Popover } from "antd";
+import { Progress, Popover } from "antd";
 import InfoIcon from "@mui/icons-material/Info";
-import HelpIcon from "@mui/icons-material/Help";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "80%",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
   const { sections, tmb, objective } = useAuth();
@@ -26,8 +12,6 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
   const [userweight, setUserWeight] = useState(0);
 
   const weight = JSON.parse(localStorage.getItem("weight"));
-
-  console.log(tmb[1]);
 
   let totalCarb = 0;
   let totalProt = 0;
@@ -72,21 +56,21 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
   const recomendedValues = () => {
     return (
       <div>
-        <ul className="text-lg">
+        <ul className="text-base">
           <li>
-            <span className="text-lg font-medium">Carboidratos:</span>
+            <span className="font-medium">Carboidratos:</span>
             {""} Recomenda-se de 2 a 4 gramas por quilograma corporal
           </li>
           <li>
-            <span className="text-lg font-medium">Proteínas:</span> Recomenda-se
-            de 1,6 a 2 gramas por quilograma corporal
+            <span className="font-medium">Proteínas:</span> Recomenda-se de 1,6
+            a 2 gramas por quilograma corporal
           </li>
           <li>
-            <span className="text-lg font-medium">Gorduras:</span> Recomenda-se
-            de 0,4 a 1 grama por quilograma corporal
+            <span className="font-medium">Gorduras:</span> Recomenda-se de 0,4 a
+            1 grama por quilograma corporal
           </li>
         </ul>
-        <p className="text-base font-medium">
+        <p className="text-sm font-medium">
           *Os valores podem mudar de acordo com as necessidades individuais
         </p>
       </div>
@@ -97,7 +81,7 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
 
   function Tool(text) {
     return (
-      <Popover content={text} zIndex={1300} placement="right">
+      <Popover content={text} zIndex={1300} placement="left">
         <InfoIcon></InfoIcon>
       </Popover>
     );
@@ -110,11 +94,11 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
     if (objective === "manter") target += tmb[1];
     return (
       <div className="myprogress">
-        <div className=" m-auto w-11/12 text-center p-1 bg-white border-4 border-stone-800 rounded-[64px] mt-8">
-          <h1 className="text-4xl font-sans font-semibold text-stone-800 mt-6">
+        <div className="m-auto w-11/12 text-center p-1 bg-white border-4 border-stone-800 rounded-[32px] ">
+          <h1 className="text-xl font-sans font-semibold text-stone-800">
             Meta diária:{" "}
             <span className="font-light italic">
-              {target} <span className="text-2xl">KCAL</span>
+              {target} <span className="text-lg">KCAL</span>
             </span>
             {Tool(valueInfo)}
           </h1>
@@ -122,12 +106,12 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
             type="circle"
             percent={Math.ceil((totalKcal / target) * 100)}
             format={() => kcalValue()}
-            width={150}
+            width={window.innerWidth < 650 ? 110 : 150}
             color="#00e5ff"
             strokeWidth={10}
             trailColor="#00e5ff26"
           />
-          <p className="text-stone-800 font-normal p-0 text-2xl mt-2 font-sans">
+          <p className="text-stone-800 font-normal text-lg mt-2 font-sans leading-3">
             {totalKcal > target ? (
               <>
                 Ultrapassou em{" "}
@@ -147,13 +131,13 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
             )}
           </p>
         </div>
-        <div className="flex flex-col mt-10">
-          <h1 className="m-auto text-center text-white font-normal font-sans text-2xl p-2 pt-3 bg-stone-800 rounded-t-full w-8/12">
+        <div className="flex flex-col mt-2">
+          <h1 className="m-auto text-center text-white font-normal font-sans text-lg md:text-xl px-2 pt-3 md:pt-2 bg-stone-800 rounded-t-full w-10/12">
             Quantidades por quilograma
           </h1>
-          <div className="flex align-center justify-around p-5 bg-white border-4 border-stone-800 rounded-[48px] text-black rounded-br-none">
+          <div className="flex align-center justify-between md:justify-around p-2 bg-white border-4 border-stone-800 rounded-[22px] text-black rounded-br-none">
             <div className="text-center">
-              <h3 className="text-xl text-black font-sans font-normal">
+              <h3 className="text-sm text-black font-sans font-normal">
                 Carboidratos
               </h3>
               <Progress
@@ -161,13 +145,14 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
                 strokeColor="#e63946"
                 type="circle"
                 format={() => macroQty(totalCarb)}
+                width={window.innerWidth < 650 ? 100 : 150}
                 strokeWidth={8}
                 trailColor="#e6394726"
                 status="normal"
               />
             </div>
             <div className="text-center">
-              <h3 className="text-xl text-black font-sans font-normal">
+              <h3 className="text-sm text-black font-sans font-normal">
                 Proteínas
               </h3>
               <Progress
@@ -175,13 +160,14 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
                 strokeColor="#06d6a0"
                 type="circle"
                 format={() => macroQty(totalProt)}
+                width={window.innerWidth < 650 ? 100 : 150}
                 strokeWidth={8}
                 trailColor="#06d6a026"
                 status="normal"
               />
             </div>
             <div className="text-center">
-              <h3 className="text-xl text-black font-sans font-normal">
+              <h3 className="text-sm text-black font-sans font-normal">
                 Gorduras
               </h3>
               <Progress
@@ -189,6 +175,7 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
                 strokeColor="#fca311"
                 type="circle"
                 format={() => macroQty(totalFat)}
+                width={window.innerWidth < 650 ? 100 : 150}
                 strokeWidth={8}
                 trailColor="#fca31126"
                 status="normal"
@@ -196,14 +183,14 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
             </div>
           </div>
           <div className="flex flex-row-reverse align-center text-white">
-            <p className="flex text-white px-8 pt-2 pb-3 bg-stone-800 rounded-b-full">
+            <p className="flex text-sm text-white px-6 pt-2 pb-3 bg-stone-800 rounded-b-full">
               Valores recomendados
               {
-                <div className="ml-3">
+                <div className="ml-1">
                   <Popover
                     content={recomendedValues}
                     zIndex={1300}
-                    placement="right"
+                    placement="left"
                     style={{ marginLeft: "4px" }}
                   >
                     <InfoIcon></InfoIcon>
@@ -219,7 +206,7 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
 
   function kcalValue() {
     return (
-      <p className="font-sans text-black italic font-normal text-lg mt-4">
+      <p className="font-sans text-black italic font-normal text-sm mt-4">
         {totalKcal.toFixed(1)}Kcal
       </p>
     );
@@ -227,7 +214,7 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
 
   function macroQty(macro) {
     return (
-      <p className="font-sans italic text-black font-normal text-lg mt-4">
+      <p className="font-sans italic text-black font-normal text-base mt-4">
         {(macro / weight).toFixed(2)}g/kg
       </p>
     );
@@ -235,35 +222,35 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
 
   const General = () => {
     return (
-      <div className="flex flex-col text-white border-0 align-center justify-evenly">
+      <div className="w-full flex flex-col text-white align-center justify-evenly">
         <div className="text-center mt-5">
-          <h1 className="text-4xl font-semibold text-white font-sans">
+          <h1 className="text-2xl font-semibold text-white font-sans">
             Calorias totais:
           </h1>
-          <h2 className="text-2xl font-semibold italic text-white font-sans">
+          <h2 className="text-xl font-semibold italic text-white font-sans">
             {totalKcal} Kcal
           </h2>
         </div>
-        <div className="flex text-white border-0 justify-between myprogress mt-5">
+        <div className="w-full flex text-white justify-between md:justify-around myprogress mt-5">
           <Progress
             percent={Math.ceil(carbKcal)}
             type="circle"
             strokeColor="#e63946"
-            width={150}
+            width={window.innerWidth < 650 ? 110 : 150}
             strokeWidth={10}
           />
           <Progress
             percent={Math.ceil(protKcal)}
             type="circle"
             strokeColor="#06d6a0"
-            width={150}
+            width={window.innerWidth < 650 ? 110 : 150}
             strokeWidth={10}
           />
           <Progress
             percent={Math.ceil(fatKcal)}
             type="circle"
             strokeColor="#fca311"
-            width={150}
+            width={window.innerWidth < 650 ? 110 : 150}
             strokeWidth={10}
           />
         </div>
@@ -282,18 +269,12 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
           backdropFilter: "blur(8px)",
         }}
       >
-        <div className="glass-modal">
-          <h1 className="m-auto text-center font-sans font-bold text-white text-5xl bg-secondary rounded-full p-2 py-4  w-7/12 ">
+        <div className="glass-modal top-1/2 w-[98%]">
+          <h1 className="m-auto text-center font-sans font-bold text-white text-xl bg-secondary rounded-full p-2 py-4 w-7/12 ">
             VISÃO GERAL
           </h1>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {tmb[0] !== 0 ? (
-              <div>
-                <UserData></UserData>
-              </div>
-            ) : (
-              <General></General>
-            )}
+            {tmb[0] !== 0 ? <UserData></UserData> : <General></General>}
             <DataDrawer
               drawer={drawer}
               setDrawer={setDrawer}

@@ -52,7 +52,7 @@ const Section = ({
   return (
     <div>
       {section.title !== "" ? (
-        <div className="mt-10 lg:w-9/12 md:w-11/12 sm:w-[98%] m-auto">
+        <div className="mt-10 w-[90%] md:w-11/12 sm:w-[98%] m-auto">
           <Accordion
             style={{
               borderRadius: "18px",
@@ -82,11 +82,11 @@ const Section = ({
             >
               <Typography className="w-full" style={{ pointerEvents: "none" }}>
                 <div className="flex align-center md:justify-evenly sm:justify-between">
-                  <div className="flex-none shrink-0 md:shrink w-[25%] lg:w-64 md:w-44 font-sans">
-                    <h1 className="lg:text-4xl text-stone-100 dark:text-stone-900 sm:text-lg md:text-3xl">
+                  <div className="flex-none shrink-0 md:shrink w-[28%] lg:w-64 md:w-44 font-sans">
+                    <h1 className="text-base md:text-2xl lg:text-4xl  text-stone-100 dark:text-stone-900  ">
                       {section.title}
                     </h1>
-                    <h2 className="lg:text-3xl text-base md:text-2xl text-stone-100 dark:text-stone-900 font-extralight ">
+                    <h2 className="text-sm md:text-xl lg:text-3xl  text-stone-100 dark:text-stone-900 font-extralight ">
                       {section.time}
                     </h2>
                     {window.innerWidth <= 500 ? (
@@ -129,15 +129,15 @@ const Section = ({
                       variant="contained"
                       onClick={() => removeSection()}
                       sx={{
+                        pointerEvents: "auto",
                         width: {
                           xs: "70px",
                           sm: "150px",
                           md: "185px",
-                          lg: "185px",
                         },
                         fontSize: {
                           xs: "12px",
-                          lg: "14px",
+                          md: "14px",
                         },
                         padding: {
                           xs: "0px",
@@ -167,19 +167,19 @@ const Section = ({
                 <div className=" text-stone-800 ">
                   {section.food.map((item, i) => (
                     <>
-                      <div className="text-stone-900 dark:text-stone-100 flex flex-col lg:justify-evenly justify-between bg-white dark:bg-dark border-2 border-white rounded-xl mt-2">
-                        <div className="p-2 lg:w-3/12 md:w-5/12 w-full flex flex-col">
+                      <div className="text-stone-900 dark:text-stone-100 flex flex-col md:flex-row justify-between lg:justify-between  bg-white dark:bg-dark border-2 border-white rounded-xl mt-2">
+                        <div className="p-2 lg:w-2/6 md:w-5/12 w-full flex flex-col">
                           <div className="flex align-center justify-between w-full">
                             <h2
                               className={`text-stone-900 dark:text-stone-100 ${
                                 item.length >= 25
-                                  ? "lg:text-2xl md:text-xl text-sm"
-                                  : "lg:text-3xl md:text-2xl text-lg"
+                                  ? "lg:text-xl md:text-base text-sm"
+                                  : "lg:text-2xl md:text-lg text-lg"
                               } `}
                             >
                               {item}
                             </h2>
-                            {window.innerWidth < 650 ? (
+                            {window.innerWidth < 600 ? (
                               <div className="">
                                 <img
                                   src="./minus.png"
@@ -193,11 +193,11 @@ const Section = ({
                             )}
                           </div>
                           <div>
-                            <h3 className="text-sm semi:text-lg md:text-xl lg:text-2xl italic text-stone-900 dark:text-stone-100">
+                            <h3 className="text-sm md:text-base lg:text-xl italic text-stone-900 dark:text-stone-100">
                               Quantidade
                             </h3>
                             <div className="flex justify-between">
-                              <div className="w-[35%] lg:w-6/12 md:w-2/3 flex justify-between">
+                              <div className="w-[35%] md:w-2/3 lg:w-6/12 flex justify-between">
                                 {edit === i ? (
                                   <>
                                     <TextField
@@ -226,19 +226,17 @@ const Section = ({
                                       sx={{
                                         width: {
                                           xs: "50px",
-                                          sm: "150px",
-                                          md: "185px",
-                                          lg: "full",
+                                          sm: "60px",
+                                          md: "80px",
                                         },
                                         padding: {
                                           xs: "0px",
                                           sm: "2px",
-                                          md: "8px",
+                                          md: "4px",
                                         },
                                         fontSize: {
                                           xs: "12px",
                                           sm: "14px",
-                                          md: "16px",
                                         },
                                       }}
                                     >
@@ -247,7 +245,7 @@ const Section = ({
                                   </>
                                 ) : (
                                   <>
-                                    <p className="text-sm semi:text-lg lg:text-2xl m-0 p-0 py-0 font-sans font-medium italic">
+                                    <p className="text-sm lg:text-lg m-0 p-0 py-0 font-sans font-medium italic">
                                       {section.quantity[i]}g
                                     </p>
                                     <Button
@@ -260,19 +258,17 @@ const Section = ({
                                       sx={{
                                         width: {
                                           xs: "50px",
-                                          sm: "150px",
-                                          md: "185px",
-                                          lg: "full",
+                                          sm: "60px",
+                                          md: "80px",
                                         },
                                         padding: {
                                           xs: "0px",
                                           sm: "2px",
-                                          md: "8px",
+                                          md: "4px",
                                         },
                                         fontSize: {
                                           xs: "12px",
                                           sm: "14px",
-                                          md: "16px",
                                         },
                                       }}
                                     >
@@ -284,41 +280,42 @@ const Section = ({
                             </div>
                           </div>
                         </div>
-                        <div className="w-full lg:w-3/12 md:w-1/2 mb-2 flex align-center justify-evenly">
+
+                        <div className="w-full lg:w-5/12 md:w-1/2 mb-2 flex align-center justify-evenly md:justify-between md:m-0  md:translate-y-[25%] lg:translate-y-[20%]">
                           <div className="mt-3">
-                            <div className="bg-[#e63946] text-white font-bold text-xl text-center w-12 h-6 flex flex-col align-center justify-center rounded-t-lg">
+                            <div className="bg-[#e63946] text-white font-bold text-xl text-center w-12 lg:w-16 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg">
                               C
                             </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 rounded-b-lg font-sans text-sm">
+                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 rounded-b-lg font-sans text-sm lg:text-base">
                               {section.carb[i]}
                             </div>
                           </div>
                           <div className="mt-3">
-                            <div className="bg-[#06d6a0] text-white font-bold text-xl text-center w-12 h-6 flex flex-col align-center justify-center rounded-t-lg">
+                            <div className="bg-[#06d6a0] text-white font-bold text-xl text-center w-12 lg:w-16 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg">
                               P
                             </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 rounded-b-lg font-sans text-sm">
+                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 rounded-b-lg font-sans text-sm lg:text-base">
                               {section.protein[i]}
                             </div>
                           </div>
                           <div className="mt-3">
-                            <div className="bg-[#fca311] text-white font-bold text-xl text-center w-12 h-6 flex flex-col align-center justify-center rounded-t-lg ">
+                            <div className="bg-[#fca311] text-white font-bold text-xl text-center w-12 lg:w-16 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg ">
                               G
                             </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 rounded-b-lg font-sans text-sm">
+                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 rounded-b-lg font-sans text-sm lg:text-base">
                               {section.fat[i]}
                             </div>
                           </div>
                           <div className="mt-3">
-                            <div className="bg-[#f50057] text-white font-bold text-base text-center w-12 h-6 flex flex-col align-center justify-center rounded-t-lg">
+                            <div className="bg-[#f50057] text-white font-bold text-base text-center w-12 lg:w-16 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg">
                               Kcal
                             </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 rounded-b-lg font-sans text-sm">
+                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 rounded-b-lg font-sans text-sm lg:text-base">
                               {section.calories[i].toFixed(1)}
                             </div>
                           </div>
                         </div>
-                        {window.innerWidth > 650 ? (
+                        {window.innerWidth >= 600 ? (
                           <div className="w-36">
                             <img
                               src="./minus.png"

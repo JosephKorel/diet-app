@@ -1,5 +1,7 @@
 import React from "react";
 import FoodFact from "./food-facts";
+import { Popover } from "antd";
+import InfoIcon from "@mui/icons-material/Info";
 
 export const FoodTable = ({ food }) => {
   const item = food[0];
@@ -62,17 +64,27 @@ export const FoodTable = ({ food }) => {
   }
 
   return (
-    <div className="flex align-center justify-evenly ">
-      <div className="w-1/2">
+    <div className="md:w-11/12 md:m-auto flex flex-col align-center justify-between">
+      <div>
         {food[0] ? (
-          <div className="text-stone-800 bg-[#fdfffc] rounded-xl">
-            <h1 className="text-4xl p-2 rounded-t-xl bg-secondary text-white w-full">
-              {item.description}
-            </h1>
-            <h2 className="text-2xl italic px-2">
+          <div className=" text-stone-800 bg-[#fdfffc] rounded-xl">
+            <div className="flex justify-between p-2 rounded-t-xl bg-secondary text-white w-full">
+              <h1 className="text-xl md:text-2xl text-white">
+                {item.description}
+              </h1>
+              <Popover
+                content="Tr e NA indicam valores não analisados."
+                zIndex={1300}
+                placement="left"
+                style={{ marginLeft: "4px" }}
+              >
+                <InfoIcon></InfoIcon>
+              </Popover>
+            </div>
+            <h2 className="text-base italic px-2">
               Valores referentes à porção de 100 gramas
             </h2>
-            <table className="w-full table-auto text-lg font-sans foodtable ">
+            <table className="w-full table-auto text-sm font-sans foodtable ">
               <tr>
                 <td>Carboidratos</td>
                 <td>

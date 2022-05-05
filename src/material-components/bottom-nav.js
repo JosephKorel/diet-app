@@ -41,14 +41,14 @@ export default function BottomNav() {
       ) : (
         <div></div>
       )}
-      <div className="lg:w-2/3 md:w-full text-center m-auto bg-dark dark:bg-slate-100 lg:rounded-full md:rounded-none  lg:border-2 sm:border-t-2 border-white dark:border-stone-900">
+      <div className="lg:w-2/3 md:w-full text-center m-auto bg-stone-900 dark:bg-[#e8eae9] rounded-none lg:rounded-full">
         <BottomNavigation
           showLabels
           sx={{
             width: "full",
             margin: "auto",
-            backgroundColor: `${theme == "light" ? "#1a1a1a" : "#f6f9f7"}`,
-            borderRadius: "100%",
+            backgroundColor: `${theme == "light" ? "#1a1a1a" : "#e8eae9"}`,
+            borderRadius: `${window.innerWidth > 1024 ? "100%" : "none"}`,
             "& .MuiBottomNavigationAction-root": {
               color: `${theme == "light" ? "white" : "#1a1a1a"}`,
             },

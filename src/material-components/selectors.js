@@ -94,25 +94,27 @@ export function ActivityPopover() {
         }}
       >
         <Typography sx={{ p: 2 }}>
-          <h1>Taxa de atividade</h1>
+          <h1 className="text-lg">Taxa de atividade</h1>
           <ul>
             <li>
-              <span>Sedentário:</span> Pouca ou nenhuma atividade física
+              <span className="font-semibold">Sedentário:</span> Pouca ou
+              nenhuma atividade física
             </li>
             <li>
-              <span>Leve:</span> Exercício leve de uma a três vezes na semana
+              <span className="font-semibold">Leve:</span> Exercício leve de uma
+              a três vezes na semana
             </li>
             <li>
-              <span>Moderado:</span> Exercício moderado de três a cinco vezes na
-              semana
+              <span className="font-semibold">Moderado:</span> Exercício
+              moderado de três a cinco vezes na semana
             </li>
             <li>
-              <span>Alto:</span> Exercício pesado de cinco a seis vezes na
-              semana
+              <span className="font-semibold">Alto:</span> Exercício pesado de
+              cinco a seis vezes na semana
             </li>
             <li>
-              <span>Extremo:</span> Exercício pesado diariamente até mesmo duas
-              vezes ao dia
+              <span className="font-semibold">Extremo:</span> Exercício pesado
+              diariamente até mesmo duas vezes ao dia
             </li>
           </ul>
         </Typography>

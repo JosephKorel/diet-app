@@ -45,7 +45,7 @@ const FoodSearch = () => {
 
   return (
     <div>
-      <div className="ml-10 mt-5">
+      <div className="ml-2 mt-2">
         <ReactSwitch
           onChange={toggleTheme}
           onColor="#f6f9f7"
@@ -55,7 +55,7 @@ const FoodSearch = () => {
           uncheckedIcon={<NightlightIcon></NightlightIcon>}
         ></ReactSwitch>
       </div>
-      <div className="w-9/12 p-5 m-auto mt-10 rounded-2xl">
+      <div className="w-full p-1 m-auto mt-5 rounded-2xl">
         <div className="w-full flex align-center justify-center ">
           <div className="bg-white rounded-lg">
             <Autocomplete

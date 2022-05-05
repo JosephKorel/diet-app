@@ -51,8 +51,8 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
   const helpTitle = <h1 className="text-lg md:text-xl">Como utilizar</h1>;
 
   return (
-    <div className="md:mt-5 mt-2 font-sans">
-      <div className="md:ml-10 ml-2">
+    <div className=" mt-2 font-sans">
+      <div className="md:ml-3 ml-2">
         <ReactSwitch
           onChange={toggleTheme}
           onColor="#f6f9f7"
@@ -63,12 +63,12 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
         ></ReactSwitch>
       </div>
       <h1 className="text-5xl lg:text-7xl md:text-6xl w-full text-center text-stone-900 dark:text-stone-100  ">
-        <span className="text-7xl lg:text-9xl md:text-7xl  text-secondary">
+        <span className="text-7xl lg:text-9xl md:text-8xl  text-secondary">
           M
         </span>
         acro tracker
       </h1>
-      <div className="lg:w-6/12 md:w-4/6 w-[95%] m-auto flex align-center justify-between bg-white p-3 md:p-5 rounded-3xl">
+      <div className="lg:w-9/12 md:w-5/6 w-[95%] m-auto flex align-center justify-between bg-white p-3 md:p-5 rounded-3xl">
         <TextField
           id="refName"
           label="Refeição"

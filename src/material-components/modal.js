@@ -84,11 +84,10 @@ const BasicModal = ({
             xs: "70px",
             sm: "150px",
             md: "185px",
-            lg: "185px",
           },
           fontSize: {
             xs: "12px",
-            lg: "14px",
+            md: "14px",
           },
           padding: {
             xs: "0px",
@@ -107,9 +106,11 @@ const BasicModal = ({
           backdropFilter: "blur(2px)",
         }}
       >
-        <div className="flex flex-col">
-          <div className="glass bg-white font-sans">
-            <h1 className="text-stone-800 text-4xl p-5">Adicionar alimento</h1>
+        <div className="flex flex-col w-full">
+          <div className="glass w-[95%] lg:w-5/6 bg-white font-sans">
+            <h1 className="text-stone-800 text-lg md:text-2xl lg:text-3xl p-5">
+              Adicionar alimento
+            </h1>
             <Typography
               id="modal-modal-description"
               sx={{
@@ -118,7 +119,7 @@ const BasicModal = ({
             >
               <div className="flex flex-col align-center justify-center">
                 <div>
-                  <div className="w-full flex align-center justify-evenly mt-10">
+                  <div className="w-full flex align-center justify-around p-2 mb-3">
                     <FoodField
                       setShow={setShow}
                       newFood={newFood}
@@ -126,36 +127,57 @@ const BasicModal = ({
                     ></FoodField>
                     <TextField
                       id="foodQuantity"
-                      label="Quantidade (g)"
+                      label="Quantidade(g)"
                       type="number"
                       variant="standard"
                       value={qnty}
                       onChange={(e) => setQnty(e.target.value)}
                       color="secondary"
+                      sx={{
+                        width: {
+                          xs: "80px",
+                          sm: "100px",
+                        },
+                      }}
                     />
-                    <Button
-                      variant="contained"
-                      onClick={addFood}
-                      color="secondary"
-                    >
-                      Adicionar
-                    </Button>
+                    {window.innerWidth >= 600 ? (
+                      <Button
+                        variant="contained"
+                        onClick={addFood}
+                        color="secondary"
+                      >
+                        Adicionar
+                      </Button>
+                    ) : (
+                      <></>
+                    )}
                   </div>
                   {show === true ? (
-                    <div className="p-5 mt-10">
-                      <h1 className="text-stone-800 text-5xl">
+                    <div className="p-2">
+                      <h1 className="text-stone-800 text-xl md:text-2xl lg:text-3xl">
                         {entries.map((item) =>
                           item.slice(0, 1).map((obj) => obj)
                         )}
                       </h1>
-                      <h2 className="text-xl italic">
+                      <h2 className="text-base md:text-xl italic">
                         Valor nutricional em 100 gramas
                       </h2>
-                      <ul className="text-lg">
+                      <ul className="text-sm md:text-base lg:text-lg">
                         <li>Carboidratos: {carb}g</li>
                         <li>Proteínas: {protein}g</li>
                         <li>Gorduras: {fat}g</li>
                       </ul>
+                      {window.innerWidth < 600 ? (
+                        <Button
+                          variant="contained"
+                          onClick={addFood}
+                          color="secondary"
+                        >
+                          Adicionar
+                        </Button>
+                      ) : (
+                        <div></div>
+                      )}
                     </div>
                   ) : (
                     <div></div>

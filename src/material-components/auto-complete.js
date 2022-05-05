@@ -38,6 +38,7 @@ export default function FoodField({ setShow, newFood, setNewFood }) {
   return (
     <div>
       <Autocomplete
+        size={window.innerWidth >= 600 ? "medium" : "small"}
         disablePortal
         freeSolo={true}
         value={newFood}
@@ -45,13 +46,17 @@ export default function FoodField({ setShow, newFood, setNewFood }) {
         onInputChange={handleChange}
         onChange={() => setShow(true)}
         onOpen={() => setShow(false)}
-        id="combo-box-demo"
         options={foodInput.length >= 3 ? entries[0] : values}
         renderInput={(params) => (
           <TextField
             {...params}
             label="Alimento"
-            sx={{ width: 300 }}
+            sx={{
+              width: {
+                xs: "150px",
+                sm: "230px",
+              },
+            }}
             color="secondary"
           />
         )}
