@@ -36,7 +36,7 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
   const format = "HH:mm";
 
   const helpContent = (
-    <div className="w-9/12 text-lg">
+    <div className="w-full text-base md:text-2xl">
       <p>
         Primeiro adicione uma refeição e o horário, após isso adicione os
         alimentos a serem consumidos nas respectivas refeições
@@ -48,11 +48,11 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
     </div>
   );
 
-  const helpTitle = <h1 className="text-2xl">Como utilizar</h1>;
+  const helpTitle = <h1 className="text-lg md:text-xl">Como utilizar</h1>;
 
   return (
-    <div className="md:mt-5 sm:mt-2 font-sans">
-      <div className="md:ml-10 sm:ml-2">
+    <div className="md:mt-5 mt-2 font-sans">
+      <div className="md:ml-10 ml-2">
         <ReactSwitch
           onChange={toggleTheme}
           onColor="#f6f9f7"
@@ -62,13 +62,13 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
           uncheckedIcon={<NightlightIcon></NightlightIcon>}
         ></ReactSwitch>
       </div>
-      <h1 className="lg:text-7xl md:text-6xl sm:text-5xl w-full text-center text-stone-900 dark:text-stone-100  ">
-        <span className="lg:text-9xl md:text-7xl sm:text-7xl text-secondary">
+      <h1 className="text-5xl lg:text-7xl md:text-6xl w-full text-center text-stone-900 dark:text-stone-100  ">
+        <span className="text-7xl lg:text-9xl md:text-7xl  text-secondary">
           M
         </span>
         acro tracker
       </h1>
-      <div className="lg:w-6/12 md:w-4/6 sm:w-[95%] m-auto flex align-center justify-between bg-white p-5 rounded-3xl">
+      <div className="lg:w-6/12 md:w-4/6 w-[95%] m-auto flex align-center justify-between bg-white p-3 md:p-5 rounded-3xl">
         <TextField
           id="refName"
           label="Refeição"
@@ -101,18 +101,13 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
         <img
           src="add-pink.png"
           alt="Adicionar"
-          className="hover:scale-105 duration-100 cursor-pointer"
+          className=" hover:scale-105 duration-100 cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             addSection(sectionTitle);
           }}
         ></img>
-        <Popover
-          content={helpContent}
-          title={helpTitle}
-          placement="right"
-          style={{ width: "300px", backgroundColor: "black" }}
-        >
+        <Popover content={helpContent} title={helpTitle} placement="left">
           <InfoIcon></InfoIcon>
         </Popover>
       </div>

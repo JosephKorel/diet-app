@@ -81,7 +81,7 @@ const BasicModal = ({
         }}
         sx={{
           width: {
-            xs: "80px",
+            xs: "70px",
             sm: "150px",
             md: "185px",
             lg: "185px",
@@ -91,7 +91,7 @@ const BasicModal = ({
             lg: "14px",
           },
           padding: {
-            xs: "2px",
+            xs: "0px",
             sm: "8px",
           },
         }}

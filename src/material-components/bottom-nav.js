@@ -41,7 +41,7 @@ export default function BottomNav() {
       ) : (
         <div></div>
       )}
-      <div className="lg:w-2/3 md:w-full text-center m-auto bg-dark dark:bg-slate-100 lg:rounded-full md:rounded-none  border-2 border-white dark:border-stone-900">
+      <div className="lg:w-2/3 md:w-full text-center m-auto bg-dark dark:bg-slate-100 lg:rounded-full md:rounded-none  lg:border-2 sm:border-t-2 border-white dark:border-stone-900">
         <BottomNavigation
           showLabels
           sx={{
@@ -53,7 +53,7 @@ export default function BottomNav() {
               color: `${theme == "light" ? "white" : "#1a1a1a"}`,
             },
             "& .Mui-selected, .Mui-selected > svg": {
-              color: "#f50057",
+              color: "#00bfa5",
             },
           }}
           value={value}
