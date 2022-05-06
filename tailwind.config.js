@@ -20,7 +20,7 @@ module.exports = {
         semi: "450px",
         // => @media (min-width: 450px) { ... }
 
-        md: "600px",
+        md: "640px",
         // => @media (min-width: 768px) { ... }
 
         lg: "1024px",

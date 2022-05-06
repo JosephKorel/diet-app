@@ -145,7 +145,7 @@ const FoodFact = ({
   ];
 
   return (
-    <div className="w-full mt-2 mb-16">
+    <div className="w-full lg:w-1/3 mt-2 mb-16">
       <Paper elevation={12}>
         <div className="w-full p-3">
           <h1 className="text-lg font-sans font-normal text-stone-800">

@@ -36,7 +36,7 @@ const FoodInput = ({ sectionTitle, setSectionTitle, setSections }) => {
   const format = "HH:mm";
 
   const helpContent = (
-    <div className="w-full text-base md:text-2xl">
+    <div className="text-base md:text-lg">
       <p>
         Primeiro adicione uma refeição e o horário, após isso adicione os
         alimentos a serem consumidos nas respectivas refeições

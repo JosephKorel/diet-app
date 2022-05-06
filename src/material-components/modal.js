@@ -107,8 +107,8 @@ const BasicModal = ({
         }}
       >
         <div className="flex flex-col w-full">
-          <div className="glass w-[95%] lg:w-5/6 bg-white font-sans">
-            <h1 className="text-stone-800 text-lg md:text-2xl lg:text-3xl p-5">
+          <div className="glass w-[95%] lg:w-5/6 2xl:w-2/3 bg-white font-sans">
+            <h1 className="text-stone-800 text-lg md:text-2xl lg:text-3xl 2xl:text-4xl p-5">
               Adicionar alimento
             </h1>
             <Typography
@@ -137,6 +137,7 @@ const BasicModal = ({
                         width: {
                           xs: "80px",
                           sm: "100px",
+                          md: "150px",
                         },
                       }}
                     />
@@ -154,15 +155,15 @@ const BasicModal = ({
                   </div>
                   {show === true ? (
                     <div className="p-2">
-                      <h1 className="text-stone-800 text-xl md:text-2xl lg:text-3xl">
+                      <h1 className="text-stone-800 text-xl md:text-2xl lg:text-3xl 2xl:text-4xl">
                         {entries.map((item) =>
                           item.slice(0, 1).map((obj) => obj)
                         )}
                       </h1>
-                      <h2 className="text-base md:text-xl italic">
+                      <h2 className="text-base md:text-xl 2xl:text-2xl italic">
                         Valor nutricional em 100 gramas
                       </h2>
-                      <ul className="text-sm md:text-base lg:text-lg">
+                      <ul className="text-sm md:text-base lg:text-lg 2xl:text-xl">
                         <li>Carboidratos: {carb}g</li>
                         <li>Proteínas: {protein}g</li>
                         <li>Gorduras: {fat}g</li>

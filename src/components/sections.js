@@ -167,14 +167,14 @@ const Section = ({
                 <div className=" text-stone-800 ">
                   {section.food.map((item, i) => (
                     <>
-                      <div className="text-stone-900 dark:text-stone-100 flex flex-col md:flex-row justify-between lg:justify-between  bg-white dark:bg-dark border-2 border-white rounded-xl mt-2">
-                        <div className="p-2 lg:w-2/6 md:w-5/12 w-full flex flex-col">
+                      <div className="text-stone-900 dark:text-stone-100 flex flex-col md:flex-row justify-between lg:justify-between 2xl:justify-around bg-white dark:bg-dark border-2 border-white rounded-xl mt-2">
+                        <div className="p-2 2xl:w-[25%] lg:w-2/6 md:w-5/12 w-full flex flex-col">
                           <div className="flex align-center justify-between w-full">
                             <h2
                               className={`text-stone-900 dark:text-stone-100 ${
                                 item.length >= 25
-                                  ? "lg:text-xl md:text-base text-sm"
-                                  : "lg:text-2xl md:text-lg text-lg"
+                                  ? "lg:text-xl 2xl:text-2xl md:text-base text-sm"
+                                  : "lg:text-2xl 2xl:text-3xl text-lg"
                               } `}
                             >
                               {item}
@@ -281,36 +281,36 @@ const Section = ({
                           </div>
                         </div>
 
-                        <div className="w-full lg:w-5/12 md:w-1/2 mb-2 flex align-center justify-evenly md:justify-between md:m-0  md:translate-y-[25%] lg:translate-y-[20%]">
+                        <div className="w-full lg:w-5/12 md:w-1/2 mb-2 flex align-center justify-evenly md:justify-between md:m-0  md:translate-y-[25%] lg:translate-y-[20%] 2xl:translate-y-[15%]">
                           <div className="mt-3">
-                            <div className="bg-[#e63946] text-white font-bold text-xl text-center w-12 lg:w-16 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg">
+                            <div className="bg-[#e63946] text-white font-bold text-xl 2xl:text-3xl text-center w-12 lg:w-16 2xl:w-20 2xl:h-10 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg">
                               C
                             </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 rounded-b-lg font-sans text-sm lg:text-base">
+                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 2xl:h-10 rounded-b-lg font-sans text-sm lg:text-base 2xl:text-lg 2xl:leading-10">
                               {section.carb[i]}
                             </div>
                           </div>
                           <div className="mt-3">
-                            <div className="bg-[#06d6a0] text-white font-bold text-xl text-center w-12 lg:w-16 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg">
+                            <div className="bg-[#06d6a0] text-white font-bold text-xl 2xl:text-3xl text-center w-12 lg:w-16 h-6 lg:h-8 2xl:w-20 2xl:h-10 flex flex-col align-center justify-center rounded-t-lg">
                               P
                             </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 rounded-b-lg font-sans text-sm lg:text-base">
+                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 2xl:h-10 rounded-b-lg font-sans text-sm lg:text-base 2xl:text-lg 2xl:leading-10">
                               {section.protein[i]}
                             </div>
                           </div>
                           <div className="mt-3">
-                            <div className="bg-[#fca311] text-white font-bold text-xl text-center w-12 lg:w-16 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg ">
+                            <div className="bg-[#fca311] text-white font-bold text-xl 2xl:text-3xl text-center w-12 lg:w-16 h-6 lg:h-8 2xl:w-20 2xl:h-10 flex flex-col align-center justify-center rounded-t-lg ">
                               G
                             </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 rounded-b-lg font-sans text-sm lg:text-base">
+                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 2xl:h-10 rounded-b-lg font-sans text-sm lg:text-base 2xl:text-lg 2xl:leading-10">
                               {section.fat[i]}
                             </div>
                           </div>
                           <div className="mt-3">
-                            <div className="bg-[#f50057] text-white font-bold text-base text-center w-12 lg:w-16 h-6 lg:h-8 flex flex-col align-center justify-center rounded-t-lg">
+                            <div className="bg-[#f50057] text-white font-bold text-base 2xl:text-2xl text-center w-12 lg:w-16 h-6 lg:h-8 2xl:w-20 2xl:h-10 flex flex-col align-center justify-center rounded-t-lg">
                               Kcal
                             </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 rounded-b-lg font-sans text-sm lg:text-base">
+                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-6 lg:h-8 2xl:h-10 rounded-b-lg font-sans text-sm lg:text-base 2xl:leading-10">
                               {section.calories[i].toFixed(1)}
                             </div>
                           </div>

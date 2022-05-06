@@ -127,38 +127,40 @@ export default function DataDrawer({ setUserWeight }) {
       }}
       role="presentation"
     >
-      <div className="w-full m-auto">
-        <div className="p-3 flex align-center justify-evenly">
-          {window.innerWidth < 650 ? (
+      <div className="w-full 2xl:w-2/3 m-auto">
+        <div className="p-3 flex align-center justify-evenly md:flex-col">
+          {window.innerWidth < 600 ? (
             <MobileData></MobileData>
           ) : (
             <>
               <GenderRadio sex={sex} setSex={setSex} tmb={tmb}></GenderRadio>
-              <TextField
-                color="secondary"
-                type="number"
-                label="Idade"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-              ></TextField>
-              <TextField
-                color="secondary"
-                type="number"
-                label="Peso(kg)"
-                value={weight}
-                onChange={(e) => {
-                  setWeight(e.target.value);
-                }}
-              ></TextField>
-              <TextField
-                color="secondary"
-                type="number"
-                label="Altura (cm)"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
-                onClick={(e) => console.log(e.target.value)}
-              ></TextField>
-              <div className="w-6/12 flex align-center justify-evenly mt-5 ml-3 mb-16">
+              <div className="flex justify-around mt-4 lg:w-2/3">
+                <TextField
+                  color="secondary"
+                  type="number"
+                  label="Idade"
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                ></TextField>
+                <TextField
+                  color="secondary"
+                  type="number"
+                  label="Peso(kg)"
+                  value={weight}
+                  onChange={(e) => {
+                    setWeight(e.target.value);
+                  }}
+                ></TextField>
+                <TextField
+                  color="secondary"
+                  type="number"
+                  label="Altura (cm)"
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                  onClick={(e) => console.log(e.target.value)}
+                ></TextField>
+              </div>
+              <div className="w-[60%] flex align-center justify-between mt-5 ml-3 mb-6">
                 <div className="flex align-center justify-center ">
                   <ActSelector act={act} setAct={setAct}></ActSelector>
                   <ActivityPopover></ActivityPopover>
