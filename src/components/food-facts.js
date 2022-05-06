@@ -50,8 +50,8 @@ const FoodFact = ({
         resultar em anemia.
       </p>
       <p>
-        <span className="text-lg font-bold">Fontes:</span> Feijão, fígado de
-        boi, fígado de frango, pitaia.
+        <span className="text-lg 2xl:text-xl font-bold">Fontes:</span> Feijão,
+        fígado de boi, fígado de frango, pitaia.
       </p>
     </div>
   );
@@ -65,8 +65,8 @@ const FoodFact = ({
         são anorexia, letargia e fraqueza.{" "}
       </p>
       <p>
-        <span className="text-lg font-bold">Fontes:</span> Feijão, soja, semente
-        de chia, peito de frango, banana.
+        <span className="text-lg 2xl:text-xl font-bold">Fontes:</span> Feijão,
+        soja, semente de chia, peito de frango, banana.
       </p>
     </div>
   );
@@ -80,8 +80,8 @@ const FoodFact = ({
         doenças cardiovasculares.
       </p>
       <p>
-        <span className="text-lg font-bold">Fontes:</span> Feijão, quinoa,
-        pistache, leite de vaca desnatado.
+        <span className="text-lg 2xl:text-xl font-bold">Fontes:</span> Feijão,
+        quinoa, pistache, leite de vaca desnatado.
       </p>
     </div>
   );
@@ -98,8 +98,8 @@ const FoodFact = ({
         cardiovasculares.
       </p>
       <p>
-        <span className="text-lg font-bold">Fontes:</span> Semente de chia,
-        clara do ovo de galinha, morango, feijão.
+        <span className="text-lg 2xl:text-xl font-bold">Fontes:</span> Semente
+        de chia, clara do ovo de galinha, morango, feijão.
       </p>
     </div>
   );
@@ -114,8 +114,8 @@ const FoodFact = ({
         carência leva ao raquitismo e osteomalácia.
       </p>
       <p>
-        <span className="text-lg font-bold">Fontes:</span> Lambari, leite de
-        vaca desnatado, soja, feijão, semente de chia.
+        <span className="text-lg 2xl:text-xl font-bold">Fontes:</span> Lambari,
+        leite de vaca desnatado, soja, feijão, semente de chia.
       </p>
     </div>
   );
@@ -129,8 +129,8 @@ const FoodFact = ({
         levar a anorexia, perda de paladar, alopecia, entre outros.
       </p>
       <p>
-        <span className="text-lg font-bold">Fontes:</span> Ostra, acém bovino,
-        grão-de-bico, ovo de galinha, semente de chia.
+        <span className="text-lg 2xl:text-xl font-bold">Fontes:</span> Ostra,
+        acém bovino, grão-de-bico, ovo de galinha, semente de chia.
       </p>
     </div>
   );
@@ -148,24 +148,28 @@ const FoodFact = ({
     <div className="w-full lg:w-1/3 mt-2 mb-16">
       <Paper elevation={12}>
         <div className="w-full p-3">
-          <h1 className="text-lg font-sans font-normal text-stone-800">
+          <h1 className="text-lg 2xl:text-xl font-sans font-normal text-stone-800">
             Macronutriente mais abundante:
           </h1>
-          <p className="text-xl font-sans font-bold leading-3">
+          <p className="text-xl 2xl:text-2xl font-sans font-bold leading-3">
             {macro[macroIndex]}
           </p>
-          <p className="text-base text-justify">{macroFacts[macroIndex]}</p>
+          <p className="text-base 2xl:text-lg text-justify">
+            {macroFacts[macroIndex]}
+          </p>
         </div>
       </Paper>
       <Paper elevation={12}>
         <div className="w-full p-5 mt-2">
-          <h1 className="text-lg font-sans font-normal text-stone-800">
+          <h1 className="text-lg 2xl:text-xl font-sans font-normal text-stone-800">
             Mineral mais abundante:{" "}
           </h1>
-          <p className="text-xl font-sans font-bold leading-3">
+          <p className="text-xl 2xl:text-2xl font-sans font-bold leading-3">
             {mineral[mineralIndex]}
           </p>
-          <p className="text-base text-justify">{mineralFacts[mineralIndex]}</p>
+          <p className="text-base  2xl:text-lg text-justify">
+            {mineralFacts[mineralIndex]}
+          </p>
         </div>
       </Paper>
     </div>

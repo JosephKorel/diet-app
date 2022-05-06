@@ -19,12 +19,17 @@ const FoodSearch = () => {
     document.body.style.backgroundColor = `${
       theme == "light" ? "#d3ffd3" : "#1a1a1a"
     }`;
+
+    const html = document.getElementById("html");
+
+    theme == "dark"
+      ? html.classList.add("dark")
+      : html.classList.remove("dark");
   }, [theme]);
 
   useEffect(() => {
     const userFood = foodData.filter((item) => item.description === input);
     setFood(userFood);
-    console.log(userFood);
 
     if (input !== "") {
       const description = foodData.map((item) => item.description);

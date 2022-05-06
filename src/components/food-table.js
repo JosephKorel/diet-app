@@ -69,7 +69,7 @@ export const FoodTable = ({ food }) => {
         {food[0] ? (
           <div className="text-stone-800 bg-[#fdfffc] rounded-xl lg:w-[130%] lg:mt-2">
             <div className="flex justify-between p-2 rounded-t-xl bg-secondary text-white w-full">
-              <h1 className="text-xl md:text-2xl lg:text-3xl text-white">
+              <h1 className="text-xl md:text-2xl lg:text-3xl 2xl:text-5xl text-white">
                 {item.description}
               </h1>
               <Popover
@@ -81,10 +81,10 @@ export const FoodTable = ({ food }) => {
                 <InfoIcon></InfoIcon>
               </Popover>
             </div>
-            <h2 className="text-base lg:text-lg italic px-2">
+            <h2 className="text-base lg:text-lg 2xl:text-2xl italic px-2">
               Valores referentes à porção de 100 gramas
             </h2>
-            <table className="w-full table-auto text-sm font-sans foodtable ">
+            <table className="w-full table-auto text-sm 2xl:text-lg font-sans foodtable ">
               <tr>
                 <td>Carboidratos</td>
                 <td>
