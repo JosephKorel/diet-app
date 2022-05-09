@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/diet-app/static/css/main.26402175.css",
-    "main.js": "/diet-app/static/js/main.cd3b400d.js",
+    "main.css": "/diet-app/static/css/main.38a775f3.css",
+    "main.js": "/diet-app/static/js/main.f4ba890f.js",
     "static/js/787.3f30c14e.chunk.js": "/diet-app/static/js/787.3f30c14e.chunk.js",
     "index.html": "/diet-app/index.html",
-    "main.26402175.css.map": "/diet-app/static/css/main.26402175.css.map",
-    "main.cd3b400d.js.map": "/diet-app/static/js/main.cd3b400d.js.map",
+    "main.38a775f3.css.map": "/diet-app/static/css/main.38a775f3.css.map",
+    "main.f4ba890f.js.map": "/diet-app/static/js/main.f4ba890f.js.map",
     "787.3f30c14e.chunk.js.map": "/diet-app/static/js/787.3f30c14e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.26402175.css",
-    "static/js/main.cd3b400d.js"
+    "static/css/main.38a775f3.css",
+    "static/js/main.f4ba890f.js"
   ]
 }
