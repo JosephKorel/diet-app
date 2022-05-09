@@ -65,7 +65,7 @@ export default function BottomNav() {
           <BottomNavigationAction
             label="Dieta"
             icon={<ListAltIcon />}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/diet-app")}
           />
           <BottomNavigationAction
             label="Visão geral"
