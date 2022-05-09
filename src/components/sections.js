@@ -8,9 +8,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import BasicModal from "../material-components/modal";
 import { Button, TextField } from "@mui/material";
 import { Progress } from "antd";
-import { Responsive } from "../material-components/media-query";
-import { styled } from "@mui/material/styles";
-import { red, green, blue } from "@mui/material/colors";
 
 const Section = ({
   section,
@@ -343,12 +340,3 @@ const Section = ({
 };
 
 export default Section;
-
-{
-  /*  <div className="bg-[#e63946] text-white font-bold text-2xl text-center w-16 h-8 flex flex-col align-center justify-center rounded-t-xl">
-                              C
-                            </div>
-                            <div className="text-white dark:text-stone-900 bg-stone-900 dark:bg-stone-100 text-center h-8 rounded-b-md font-sans">
-                            {section.carb[i]}
-                          </div> */
-}

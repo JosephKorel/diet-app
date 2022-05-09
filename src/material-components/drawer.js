@@ -13,7 +13,7 @@ import HelpIcon from "@mui/icons-material/Help";
 import { Popover } from "antd";
 import useLocalStorage from "../localStorage/useLocalStorage";
 
-export default function DataDrawer({ setUserWeight }) {
+export default function DataDrawer() {
   const [state, setState] = useState({
     bottom: false,
   });
@@ -23,10 +23,6 @@ export default function DataDrawer({ setUserWeight }) {
   const [weight, setWeight] = useLocalStorage("weight", "");
   const [height, setHeight] = useLocalStorage("height", "");
   const [sex, setSex] = useLocalStorage("sex", "");
-
-  useEffect(() => {
-    setUserWeight(weight);
-  }, [weight]);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -65,61 +61,6 @@ export default function DataDrawer({ setUserWeight }) {
     }
   };
 
-  function MobileData() {
-    return (
-      <div>
-        <div>
-          <GenderRadio sex={sex} setSex={setSex} tmb={tmb}></GenderRadio>
-        </div>
-        <div className="text-center md:flex md:justify-between">
-          <div className="md:w-[30%]">
-            <TextField
-              color="secondary"
-              type="number"
-              label="Idade"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-              sx={{ marginBottom: "4px" }}
-            ></TextField>
-          </div>
-          <div className="md:w-[30%]">
-            <TextField
-              color="secondary"
-              type="number"
-              label="Peso(kg)"
-              value={weight}
-              onChange={(e) => {
-                setWeight(e.target.value);
-              }}
-              sx={{ marginBottom: "4px" }}
-            ></TextField>
-          </div>
-          <div className="md:w-[30%]">
-            <TextField
-              color="secondary"
-              type="number"
-              label="Altura (cm)"
-              value={height}
-              onChange={(e) => setHeight(e.target.value)}
-              onClick={(e) => console.log(e.target.value)}
-              sx={{ marginBottom: "4px" }}
-            ></TextField>
-          </div>
-        </div>
-        <div className="flex my-3">
-          <ActSelector act={act} setAct={setAct}></ActSelector>
-          <ActivityPopover></ActivityPopover>
-        </div>
-        <div>
-          <ObjectiveRadio
-            objective={objective}
-            setObjective={setObjective}
-          ></ObjectiveRadio>
-        </div>
-      </div>
-    );
-  }
-
   const list = (anchor) => (
     <Box
       sx={{
@@ -127,10 +68,12 @@ export default function DataDrawer({ setUserWeight }) {
       }}
       role="presentation"
     >
-      <div className="w-full 2xl:w-2/3 m-auto">
-        <div className="p-3 flex flex-col lg:flex-row">
-          <GenderRadio sex={sex} setSex={setSex} tmb={tmb}></GenderRadio>
-          <div className="flex flex-col md:flex-row justify-around mt-2 w-2/3">
+      <div className="w-full lg:w-2/3 m-auto">
+        <div className="p-3 flex flex-col lg:flex-row lg:flex-wrap">
+          <div className="">
+            <GenderRadio sex={sex} setSex={setSex} tmb={tmb}></GenderRadio>
+          </div>
+          <div className="flex flex-col md:flex-row justify-around md:justify-between mt-2 w-2/3 md:w-full 2xl:w-2/3">
             <TextField
               color="secondary"
               type="number"

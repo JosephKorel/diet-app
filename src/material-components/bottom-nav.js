@@ -1,11 +1,6 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import Paper from "@mui/material/Paper";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import OverviewModal from "./overview-modal";
 import { useNavigate } from "react-router-dom";
 import ListAltIcon from "@mui/icons-material/ListAlt";
@@ -18,15 +13,6 @@ export default function BottomNav() {
   const [preValue, setPreValue] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const { theme } = useAuth();
-
-  const styles = {
-    root: {
-      color: "green",
-    },
-    selected: {
-      color: "red",
-    },
-  };
 
   let navigate = useNavigate();
   return (

@@ -6,7 +6,6 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import InfoIcon from "@mui/icons-material/Info";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -14,25 +13,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import PropTypes from "prop-types";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Tooltip } from "antd";
-
-export function SexSelector({ sex, setSex }) {
-  const handleChange = (event) => {
-    setSex(event.target.value);
-  };
-
-  return (
-    <Box sx={{ width: "150px" }}>
-      <FormControl fullWidth>
-        <InputLabel id="sex-selector">Sexo</InputLabel>
-        <Select value={sex} label="Sex" onChange={handleChange}>
-          <MenuItem value={"Masculino"}>Masculino</MenuItem>
-          <MenuItem value={"Feminino"}>Feminino</MenuItem>
-        </Select>
-      </FormControl>
-    </Box>
-  );
-}
 
 export function ActSelector({ act, setAct }) {
   const handleChange = (event) => {
