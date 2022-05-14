@@ -278,7 +278,13 @@ const OverviewModal = ({ open, setOpen, setValue, preValue }) => {
           </h1>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {tmb[0] !== 0 ? <UserData></UserData> : <General></General>}
-            <DataDrawer drawer={drawer} setDrawer={setDrawer}></DataDrawer>
+            <DataDrawer
+              drawer={drawer}
+              setDrawer={setDrawer}
+              setOpen={setOpen}
+              setValue={setValue}
+              preValue={preValue}
+            ></DataDrawer>
           </Typography>
         </div>
       </Modal>

@@ -13,7 +13,7 @@ import HelpIcon from "@mui/icons-material/Help";
 import { Popover } from "antd";
 import useLocalStorage from "../localStorage/useLocalStorage";
 
-export default function DataDrawer() {
+export default function DataDrawer({ setOpen, setValue, preValue }) {
   const [state, setState] = useState({
     bottom: false,
   });
@@ -124,6 +124,16 @@ export default function DataDrawer() {
           >
             Salvar
           </Button>
+          <Button
+            onClick={() => {
+              setState({ ...state, [anchor]: false });
+            }}
+            variant="contained"
+            color="secondary"
+            sx={{ marginLeft: "8px" }}
+          >
+            Cancelar
+          </Button>
         </div>
       </div>
     </Box>
@@ -133,24 +143,37 @@ export default function DataDrawer() {
     <div className={tmb[0] !== 0 ? "mt-5" : "mt-24"}>
       {["bottom"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button
-            onClick={toggleDrawer(anchor, true)}
-            variant="contained"
-            color="secondary"
-          >
-            {tmb[0] !== 0 ? "Editar" : "Adicionar Informações"}
-          </Button>
-          {tmb[0] !== 0 ? (
-            <></>
-          ) : (
-            <Popover
-              content="Adicione informações pessoais para obter detalhes personalizados"
-              zIndex={1300}
+          <div className="flex align-center justify-between">
+            <div>
+              <Button
+                onClick={toggleDrawer(anchor, true)}
+                variant="contained"
+                color="secondary"
+              >
+                {tmb[0] !== 0 ? "Editar" : "Adicionar Informações"}
+              </Button>
+              {tmb[0] !== 0 ? (
+                <></>
+              ) : (
+                <Popover
+                  content="Adicione informações pessoais para obter detalhes personalizados"
+                  zIndex={1300}
+                >
+                  <HelpIcon color="secondary" fontSize="large" />
+                </Popover>
+              )}
+            </div>
+            <Button
+              onClick={() => {
+                setOpen(false);
+                setValue(preValue);
+              }}
+              variant="contained"
+              color="secondary"
             >
-              <HelpIcon color="secondary" fontSize="large" />
-            </Popover>
-          )}
-
+              Voltar
+            </Button>
+          </div>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
